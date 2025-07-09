@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Tobias</title>
+    <meta name="description" content="Professional network and server specialist specializing in MikroTik configurations and Linux server deployments">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2364ffda' d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10 10-4.477 10-10m-8 5h-4v-2h4v2m0-4h-4v-2h4v2m-3-6c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S10.38 5 9 5m6 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S16.38 5 15 5Z'/%3E%3C/svg%3E" type="image/svg+xml">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Load fonts and icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text-primary: #e6f1ff;
+            --text-secondary: #ccd6f6;
+            --text-muted: #8892b0;
+        }
+        
+        /* Minimal reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-secondary);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: rgba(10, 25, 47, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(2, 12, 27, 0.8);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 5px 0;
+            font-weight: 500;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.2s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 70px;
+        }
+        
+        .hero-subtitle {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-title span {
+            display: block;
+            color: var(--text-muted);
+            font-size: clamp(2rem, 6vw, 3rem);
+        }
+        
+        .hero-description {
+            max-width: 650px;
+            margin-bottom: 3rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+        
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent);
+            border-radius: 6px;
+            color: var(--accent);
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .cta-btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Section Header */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            white-space: nowrap;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            display: block;
+            position: relative;
+            width: 350px;
+            height: 1px;
+            margin-left: 2rem;
+            background-color: var(--text-muted);
+            opacity: 0.5;
+        }
+        
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skills-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .about-image {
+            width: 78%;
+            height: 320px; 
+            object-fit: cover;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            filter: grayscale(100%) contrast(1) brightness(90%);
+            transition: filter 0.2s ease;
+        }
+        
+        .about-image:hover img {
+            filter: grayscale(0%) contrast(1) brightness(100%);
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+        }
+        
+        .project-card {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 1.5rem 0.5rem;
+        }
+        
+        .project-icon {
+            color: var(--accent);
+            font-size: 2.5rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+        
+        .project-links a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: color 0.2s ease;
+        }
+        
+        .project-links a:hover {
+            color: var(--accent);
+        }
+        
+        .project-content {
+            padding: 1rem 1.5rem 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .project-description {
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin: 1rem 0;
+        }
+
+        .project-tech span {
+            background-color: rgba(100, 255, 218, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .project-drive-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 1rem;
+            color: var(--accent);
+            font-weight: 500;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            transition: color 0.2s ease;
+        }
+        
+        .project-drive-link:hover {
+            color: var(--text-secondary);
+        }
+        
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contact-subtitle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .contact-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .social-links a {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(136, 146, 176, 0.1);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding: 2.5rem 0;
+                gap: 1.8rem;
+                display: none;
+            }
+        
+            .nav-links.active {
+                display: flex;
+            }
+        
+            .mobile-menu-btn {
+                display: block;
+            }
+        
+            .section-header h2::after {
+                width: 150px;
+                margin-left: 1rem;
+            }
+        
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        
+            .about-image {
+                margin-top: 2rem;
+                max-width: 280px;
+            }
+        
+            .hero-title span {
+                display: inline;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .section-header h2::after {
+                width: 70px;
+                margin-left: 0.8rem;
+            }
+        
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">
+            <i class="fas fa-network-wired"></i>
+            <span>Personal Portfolio</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero container fade-in delay-1">
+        <div class="hero-content">
+            <p class="hero-subtitle">
+                <i class="fas fa-server"></i>
+                <span>Hi, I'm</span>
+            </p>
+            <h1 class="hero-title">Tobias Rejanuar</h1>
+            <span class="hero-title">Network and Operating System Enthusiast !</span>
+            <p class="hero-description delay-2">
+                I study, design, implement, and maintain network and server infrastructure with a focus on security and efficiency.
+            </p>
+            <a href="#projects" class="cta-btn delay-3">
+                <span>View Projects</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="section-header fade-in">
+            <h2>About Me</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text fade-in delay-1">
+                <p>
+                    A young man interested in the world of networks and servers. I learn, design, and implement them in real life.
+                </p>
+                <p>
+                    Currently I am in the learning stage and implementing every configuration, both network and server, on a medium scale.
+                </p>
+                <p>
+                    Technical proficiencies:
+                </p>
+                <ul class="skills-list">
+                    <li><i class="fas fa-check"></i> MikroTik RouterOS</li>
+                    <li><i class="fas fa-check"></i> Linux Server</li>
+                    <li><i class="fas fa-check"></i> OpenWRT</li>
+                    <li><i class="fas fa-check"></i> OS Installation</li>
+                </ul>
+            </div>
+            <div class="about-image fade-in delay-2">
+                <img src="tobi.png" alt="Tobias Rejanuar" width="200" height="200" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <div class="section-header fade-in">
+            <h2>Featured Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card fade-in delay-1">
+                <div class="project-header">
+                    <i class="fas fa-network-wired project-icon"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/example" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Network Configurations</h3>
+                    <p class="project-description">
+                        Learn and design various configurations starting from the basics which are expected to produce a configuration that is effective, efficient and flexible in various conditions.
+                    </p>
+                    <div class="project-tech">
+                        <span>MikroTik</span>
+                        <span>OpenWRT</span>
+                        <span>Load Balancing</span>
+                        <span>VLAN</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1l68mFyhDtthsG95ObgZoEmejDgk3RIbf" target="_blank" class="project-drive-link">
+                        <i class="fab fa-google-drive"></i>
+                        View Configuration Documentation
+                    </a>
+                </div>
+            </div>
+             
+            <div class="project-card fade-in delay-2">
+                <div class="project-header">
+                    <i class="fas fa-server project-icon"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/example" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Server</h3>
+                    <p class="project-description">
+                        Design and configure server infrastructure efficiently and effectively with virtualization for its testbed.
+                    </p>
+                    <div class="project-tech">
+                        <span>MariaDB</span>
+                        <span>phpMyAdmin</span>
+                        <span>VOIP</span>
+                        <span>Data Base</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" class="project-drive-link">
+                        <i class="fab fa-google-drive"></i>
+                        View Configuration Documentation
+                    </a>
+                </div>
+            </div>
+            
+            <!-- New Linux Project Card -->
+            <div class="project-card fade-in delay-3">
+                <div class="project-header">
+                    <i class="fab fa-linux project-icon"></i> <!-- Linux logo icon -->
+                    <div class="project-links">
+                        <a href="https://github.com/example" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Linux OS</h3>
+                    <p class="project-description">
+                        Using Linux as a reliable and open source operating system so it is very flexible for network & server needs.
+                    </p>
+                    <div class="project-tech">
+                        <span>Debian</span>
+                        <span>Ubuntu</span>
+                        <span>KVM/QEMU</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1jU0tqFwBRHn5fr22lZfasjx34g4rjaMW?usp=drive_link" target="_blank" class="project-drive-link">
+                        <i class="fab fa-google-drive"></i>
+                        View Configuration Documentation
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card fade-in delay-4">
+                <div class="project-header">
+                    <i class="fas fa-shield-alt project-icon"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/example" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Network Security</h3>
+                    <p class="project-description">
+                        Comprehensive security solution featuring firewall rulesets, VPN access control, and intrusion detection systems.
+                    </p>
+                    <div class="project-tech">
+                        <span>Firewall</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" class="project-drive-link">
+                        <i class="fab fa-google-drive"></i>
+                        View Configuration Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <div class="contact">
+            <p class="contact-subtitle fade-in delay-1">
+                <i class="fas fa-paper-plane"></i>
+                <span>Get In Touch</span>
+            </p>
+            <h2 class="contact-title fade-in delay-2">Contact Me</h2>
+            <p class="contact-description fade-in delay-3">
+                For questions or to discuss potential collaborations, please contact us through the following channels.
+            </p>
+            <a href="mailto:tobiasrejanuar@gmail.com" class="cta-btn fade-in delay-4">
+                <span>Email Me</span>
+                <i class="fas fa-envelope"></i>
+            </a>
+
+            <div class="social-links fade-in delay-4">
+                <a href="https://github.com/example" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://instagram.com/in/example" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/example" target="_blank" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="fade-in delay-4">
+        <div class="container">
+            <p>© <span id="year"></span> Tobias Rejanuar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Lazy load animations
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeInElements.forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
