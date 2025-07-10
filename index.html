@@ -9,12 +9,12 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2364ffda' d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10 10-4.477 10-10m-8 5h-4v-2h4v2m0-4h-4v-2h4v2m-3-6c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S10.38 5 9 5m6 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S16.38 5 15 5Z'/%3E%3C/svg%3E" type="image/svg+xml">
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
     
     <!-- Load fonts and icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
 
     <style>
         :root {
@@ -26,7 +26,6 @@
             --text-muted: #8892b0;
         }
         
-        /* Minimal reset */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -42,7 +41,6 @@
             overflow-x: hidden;
         }
         
-        /* Typography */
         h1, h2, h3 {
             font-weight: 600;
             line-height: 1.2;
@@ -60,7 +58,6 @@
             transition: color 0.2s ease;
         }
 
-        /* Layout */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -73,7 +70,6 @@
             position: relative;
         }
         
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -142,13 +138,11 @@
             z-index: 1001;
         }
         
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             padding-top: 80px;
-            position: relative;
         }
         
         .hero-content {
@@ -204,7 +198,6 @@
             transform: translateY(-3px);
         }
         
-        /* Section Header */
         .section-header {
             display: flex;
             align-items: center;
@@ -228,7 +221,6 @@
             opacity: 0.5;
         }
         
-        /* About Section */
         .about-grid {
             display: grid;
             grid-template-columns: 3fr 2fr;
@@ -260,7 +252,6 @@
             margin: 0 auto;
             border-radius: 4px;
             overflow: hidden;
-            position: relative;
         }
         
         .about-image img {
@@ -269,14 +260,12 @@
             display: block;
             filter: grayscale(100%) contrast(1) brightness(90%);
             transition: filter 0.3s ease;
-            object-fit: cover;
         }
         
         .about-image:hover img {
             filter: grayscale(0%) contrast(1) brightness(100%);
         }
         
-        /* Projects Section */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -376,7 +365,6 @@
             color: var(--text-secondary);
         }
         
-        /* Contact Section */
         .contact {
             text-align: center;
             max-width: 700px;
@@ -416,7 +404,6 @@
             color: var(--accent);
         }
         
-        /* Footer */
         footer {
             text-align: center;
             padding: 2.5rem 0;
@@ -425,7 +412,6 @@
             border-top: 1px solid rgba(136, 146, 176, 0.1);
         }
         
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -442,7 +428,6 @@
         .delay-4 { animation-delay: 0.4s; }
         .delay-5 { animation-delay: 0.5s; }
         
-        /* Responsive Design Improvements */
         @media (max-width: 992px) {
             .container {
                 padding: 0 1.5rem;
@@ -450,10 +435,6 @@
             
             .about-grid {
                 gap: 3rem;
-            }
-            
-            .project-card {
-                min-height: auto;
             }
         }
         
@@ -625,7 +606,7 @@
                         <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <i class="fab fa-github" aria-hidden="true"></i>
                         </a>
-                        <a href="https://drive.google.com/drive/folders/1l68mFyhDtthsG95ObgZoEmejDgk3RIbf" aria-label="Live Demo">
+                        <a href="https://drive.google.com/drive/folders/1l68mFyhDtthsG95ObgZoEmejDgk3RIbf" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
                             <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -654,7 +635,7 @@
                         <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <i class="fab fa-github" aria-hidden="true"></i>
                         </a>
-                        <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" aria-label="Live Demo">
+                        <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
                             <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -683,7 +664,7 @@
                         <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <i class="fab fa-github" aria-hidden="true"></i>
                         </a>
-                        <a href="https://drive.google.com/drive/folders/1jU0tqFwBRHn5fr22lZfasjx34g4rjaMW?usp=drive_link" aria-label="Live Demo">
+                        <a href="https://drive.google.com/drive/folders/1jU0tqFwBRHn5fr22lZfasjx34g4rjaMW?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
                             <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -712,7 +693,7 @@
                         <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <i class="fab fa-github" aria-hidden="true"></i>
                         </a>
-                        <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" aria-label="Live Demo">
+                        <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
                             <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -772,26 +753,27 @@
 
     <script>
         // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        const menuIcon = mobileMenuBtn.querySelector('i');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('active');
-            menuIcon.classList.toggle('fa-bars');
-            menuIcon.classList.toggle('fa-times');
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            const btn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('.nav-links');
+            const icon = btn.querySelector('i');
+            
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', !isExpanded);
+            nav.classList.toggle('active');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
 
         // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
-                    navLinks.classList.remove('active');
-                    menuIcon.classList.remove('fa-times');
-                    menuIcon.classList.add('fa-bars');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    document.querySelector('.nav-links').classList.remove('active');
+                    const icon = document.querySelector('.mobile-menu-btn i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', 'false');
                 }
             });
         });
@@ -811,7 +793,6 @@
         });
 
         // Lazy load animations
-        const fadeInElements = document.querySelectorAll('.fade-in');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -821,7 +802,7 @@
             });
         }, { threshold: 0.1 });
 
-        fadeInElements.forEach(el => {
+        document.querySelectorAll('.fade-in').forEach(el => {
             el.style.animationPlayState = 'paused';
             observer.observe(el);
         });
