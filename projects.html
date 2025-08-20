@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Tobias</title>
+  <meta name="description" content="Professional projects in networking, servers, security, and software development.">
+  <meta name="author" content="Tobias Rejanuar">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <style>
+    :root {
+      --primary: #0a192f;
+      --secondary: #112240;
+      --accent: #64ffda;
+      --text-primary: #e6f1ff;
+      --text-secondary: #ccd6f6;
+      --text-muted: #8892b0;
+    }
+    body {
+      background: var(--primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 70px;
+      background: rgba(10,25,47,0.95);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 8%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(100,255,218,0.15);
+      backdrop-filter: blur(8px);
+    }
+    .logo {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex; align-items: center;
+      gap: 10px;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex; gap: 2rem;
+    }
+    .nav-links li { position: relative; }
+    .nav-links a {
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s;
+      padding: 6px 0;
+    }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: 0.3s;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* MOBILE MENU */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px; right: -100%;
+        flex-direction: column;
+        background: var(--secondary);
+        width: 220px;
+        height: calc(100% - 70px);
+        padding: 2rem;
+        gap: 1.5rem;
+        transition: 0.4s;
+      }
+      .nav-links.active {
+        right: 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 6rem 0; }
+
+    .section-header h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--text-secondary);
+      position: relative;
+    }
+    .section-header h2::after {
+      content: ''; position: absolute; bottom: -10px; left: 0;
+      width: 60px; height: 3px; background: var(--accent);
+    }
+
+    /* ===== PROJECT CARDS ===== */
+    .projects-grid, .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+      gap: 1.8rem;
+    }
+    .project-card {
+      background: var(--secondary);
+      border: 1px solid rgba(100,255,218,0.1);
+      border-radius: 10px;
+      padding: 1.8rem;
+      transition: 0.3s;
+      display: flex; flex-direction: column;
+      box-shadow: 0 4px 12px rgba(2,12,27,0.6);
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+    }
+    .project-title { font-size: 1.3rem; margin-bottom: .8rem; color: var(--text-secondary); }
+    .project-description { flex-grow: 1; color: var(--text-muted); font-size: 0.95rem; }
+    .project-tech {
+      margin-top: 1rem;
+      display: flex; flex-wrap: wrap; gap: .5rem;
+    }
+    .project-tech span {
+      background: rgba(100,255,218,0.1);
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: var(--accent);
+      font-size: .8rem;
+    }
+    .project-footer {
+      margin-top: 1.2rem;
+      display: flex; justify-content: flex-end; gap: 1rem;
+    }
+    .project-footer a {
+      color: var(--accent); font-size: 1.1rem;
+      transition: 0.3s;
+    }
+    .project-footer a:hover { transform: scale(1.2); }
+
+    /* ===== CERTIFICATES ===== */
+    .certificate-card {
+      background: var(--secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(100,255,218,0.1);
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 4px 12px rgba(2,12,27,0.6);
+    }
+    .certificate-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+    }
+    .certificate-card h3 {
+      color: var(--text-secondary);
+      margin: 1rem 0 .5rem;
+    }
+    .certificate-card p {
+      color: var(--text-muted);
+      font-size: .9rem;
+      margin-bottom: 1rem;
+    }
+    .certificate-card a {
+      display: inline-block;
+      margin-top: .5rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .certificate-card a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(136,146,176,0.1);
+      color: var(--text-muted);
+      font-size: .85rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="logo"><i class="fas fa-network-wired"></i> Tobias</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  </nav>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="container">
+    <div class="section-header"><h2>Projects</h2></div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <h3 class="project-title">MikroTik Configuration</h3>
+        <p class="project-description">
+          Designed and deployed a scalable MikroTik Hotspot system with role-based access (Student, Teacher, Admin),
+          VLAN segmentation, firewall policies, and real-time monitoring dashboards.
+        </p>
+        <div class="project-tech"><span>MikroTik</span> <span>VLAN</span> <span>Hotspot</span> <span>Grafana</span> <span>Firewall</span></div>
+        <div class="project-footer">
+          <a href="https://github.com/tobiasrejanuar" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://drive.google.com/drive/folders/1l68mFyhDtthsG95ObgZoEmejDgk3RIbf?usp=drive_link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3 class="project-title">Linux Server Infrastructure</h3>
+        <p class="project-description">
+          Configured Debian-based servers with automated backups, hardened OpenSSH, Fail2Ban,
+          and Nginx load balancing. Implemented KVM virtualization for lab environments.
+        </p>
+        <div class="project-tech"><span>Debian</span> <span>Fail2Ban</span> <span>KVM</span> <span>Nginx</span> <span>MySQL</span></div>
+        <div class="project-footer">
+          <a href="https://github.com/tobiasrejanuar" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://drive.google.com/drive/folders/1jU0tqFwBRHn5fr22lZfasjx34g4rjaMW?usp=drive_link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3 class="project-title">Cybersecurity</h3>
+        <p class="project-description">
+          Built a penetration testing lab with Kali Linux, SIEM integration, and IDS/IPS systems (Snort, Suricata).
+          Conducted simulated attacks with defense response reporting.
+        </p>
+        <div class="project-tech"><span>Kali</span> <span>Snort</span> <span>VPN</span> <span>SIEM</span> <span>Firewall</span></div>
+        <div class="project-footer">
+          <a href="https://github.com/tobiasrejanuar" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates" class="container">
+    <div class="section-header"><h2>Certificates</h2></div>
+    <div class="certificates-grid">
+
+      <div class="certificate-card">
+        <i class="fas fa-certificate fa-3x" style="color: var(--accent);"></i>
+        <h3>Cybersecurity Awareness</h3>
+        <p>Knowledge of penetration testing, ethical hacking</p>
+        <a href="https://drive.google.com/drive/folders/1H4FQOW0INNhJFzfM-RAdJaX5BmEbg1Nd?usp=drive_link" target="_blank">View Credential</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© <span id="year"></span> Tobias Rejanuar. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const toggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      toggle.innerHTML = navLinks.classList.contains("active")
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
+    });
+  </script>
+</body>
+</html>
