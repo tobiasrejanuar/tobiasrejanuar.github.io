@@ -1,293 +1,869 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects - Tobias</title>
-  <meta name="description" content="Professional projects in networking, servers, security, and software development.">
-  <meta name="author" content="Tobias Rejanuar">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Tobias</title>
+    <meta name="description" content="Projects-Tobias">
+    <meta name="author" content="Tobias Rejanuar">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2364ffda' d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10 10-4.477 10-10m-8 5h-4v-2h4v2m0-4h-4v-2h4v2m-3-6c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S10.38 5 9 5m6 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S16.38 5 15 5Z'/%3E%3C/svg%3E" type="image/svg+xml">
 
-  <style>
-    :root {
-      --primary: #0a192f;
-      --secondary: #112240;
-      --accent: #64ffda;
-      --text-primary: #e6f1ff;
-      --text-secondary: #ccd6f6;
-      --text-muted: #8892b0;
-    }
-    body {
-      background: var(--primary);
-      color: var(--text-primary);
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      line-height: 1.6;
-    }
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Load fonts and icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
 
-    /* ===== NAVIGATION ===== */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 70px;
-      background: rgba(10,25,47,0.95);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 8%;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(100,255,218,0.15);
-      backdrop-filter: blur(8px);
-    }
-    .logo {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 1.5rem;
-      display: flex; align-items: center;
-      gap: 10px;
-      letter-spacing: 1px;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex; gap: 2rem;
-    }
-    .nav-links li { position: relative; }
-    .nav-links a {
-      color: var(--text-secondary);
-      font-weight: 500;
-      text-decoration: none;
-      transition: 0.3s;
-      padding: 6px 0;
-    }
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0; bottom: -4px;
-      width: 0; height: 2px;
-      background: var(--accent);
-      transition: 0.3s;
-    }
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text-primary: #e6f1ff;
+            --text-secondary: #ccd6f6;
+            --text-muted: #8892b0;
+        }
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-secondary);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
 
-    /* MOBILE MENU */
-    .menu-toggle {
-      display: none;
-      font-size: 1.6rem;
-      color: var(--accent);
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      .nav-links {
-        position: fixed;
-        top: 70px; right: -100%;
-        flex-direction: column;
-        background: var(--secondary);
-        width: 220px;
-        height: calc(100% - 70px);
-        padding: 2rem;
-        gap: 1.5rem;
-        transition: 0.4s;
-      }
-      .nav-links.active {
-        right: 0;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: rgba(10, 25, 47, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(2, 12, 27, 0.8);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 5px 0;
+            font-weight: 500;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.2s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .hero-subtitle {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .hero-description {
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0 3rem;
+        }
+        
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            white-space: nowrap;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            position: relative;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            display: block;
+            position: relative;
+            width: 350px;
+            height: 1px;
+            margin-left: 2rem;
+            background-color: var(--text-muted);
+            opacity: 0.5;
+        }
+        
+        .projects-grid, .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+        
+        .project-card, .certificate-card {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .project-card:hover, .certificate-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(2, 12, 27, 0.5);
+        }
+        
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 1.5rem 0.5rem;
+        }
+        
+        .project-icon {
+            color: var(--accent);
+            font-size: 2.5rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+        
+        .project-links a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: color 0.2s ease;
+        }
+        
+        .project-links a:hover {
+            color: var(--accent);
+        }
+        
+        .project-content {
+            padding: 1rem 1.5rem 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .project-description {
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin: 1rem 0;
+        }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    section { padding: 6rem 0; }
+        .project-tech span {
+            background-color: rgba(100, 255, 218, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .project-drive-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 1rem;
+            color: var(--accent);
+            font-weight: 500;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            transition: color 0.2s ease;
+        }
+        
+        .project-drive-link:hover {
+            color: var(--text-secondary);
+        }
+        
+        /* Certificate Section Improvements */
+        .certificate-card {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            text-align: center;
+        }
+        
+        .certificate-icon {
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .certificate-content {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .certificate-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+        
+        .certificate-issuer {
+            color: var(--accent);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .certificate-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .certificate-drive-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0.9rem 1.6rem;
+            background-color: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .certificate-drive-link:hover {
+            background-color: rgba(100, 255, 218, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .contact {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contact-subtitle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .contact-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent);
+            border-radius: 6px;
+            color: var(--accent);
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            margin-bottom: 3rem;
+        }
+        
+        .cta-btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .social-links a {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(136, 146, 176, 0.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                display: none;
+                box-shadow: 0 10px 20px rgba(2, 12, 27, 0.8);
+            }
+        
+            .nav-links.active {
+                display: flex;
+            }
+        
+            .mobile-menu-btn {
+                display: block;
+            }
+        
+            .section-header {
+                margin-bottom: 3rem;
+            }
+            
+            .section-header h2::after {
+                width: 150px;
+                margin-left: 1.5rem;
+            }
+            
+            .hero {
+                min-height: 50vh;
+                padding-top: 90px;
+            }
+            
+            .projects-grid, .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section-header h2::after {
+                width: 100px;
+                margin-left: 1rem;
+            }
+            
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
 
-    .section-header h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--text-secondary);
-      position: relative;
-    }
-    .section-header h2::after {
-      content: ''; position: absolute; bottom: -10px; left: 0;
-      width: 60px; height: 3px; background: var(--accent);
-    }
-
-    /* ===== PROJECT CARDS ===== */
-    .projects-grid, .certificates-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
-      gap: 1.8rem;
-    }
-    .project-card {
-      background: var(--secondary);
-      border: 1px solid rgba(100,255,218,0.1);
-      border-radius: 10px;
-      padding: 1.8rem;
-      transition: 0.3s;
-      display: flex; flex-direction: column;
-      box-shadow: 0 4px 12px rgba(2,12,27,0.6);
-    }
-    .project-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-6px);
-    }
-    .project-title { font-size: 1.3rem; margin-bottom: .8rem; color: var(--text-secondary); }
-    .project-description { flex-grow: 1; color: var(--text-muted); font-size: 0.95rem; }
-    .project-tech {
-      margin-top: 1rem;
-      display: flex; flex-wrap: wrap; gap: .5rem;
-    }
-    .project-tech span {
-      background: rgba(100,255,218,0.1);
-      padding: 4px 10px;
-      border-radius: 4px;
-      color: var(--accent);
-      font-size: .8rem;
-    }
-    .project-footer {
-      margin-top: 1.2rem;
-      display: flex; justify-content: flex-end; gap: 1rem;
-    }
-    .project-footer a {
-      color: var(--accent); font-size: 1.1rem;
-      transition: 0.3s;
-    }
-    .project-footer a:hover { transform: scale(1.2); }
-
-    /* ===== CERTIFICATES ===== */
-    .certificate-card {
-      background: var(--secondary);
-      padding: 1.5rem;
-      border-radius: 8px;
-      border: 1px solid rgba(100,255,218,0.1);
-      text-align: center;
-      transition: 0.3s;
-      box-shadow: 0 4px 12px rgba(2,12,27,0.6);
-    }
-    .certificate-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-6px);
-    }
-    .certificate-card h3 {
-      color: var(--text-secondary);
-      margin: 1rem 0 .5rem;
-    }
-    .certificate-card p {
-      color: var(--text-muted);
-      font-size: .9rem;
-      margin-bottom: 1rem;
-    }
-    .certificate-card a {
-      display: inline-block;
-      margin-top: .5rem;
-      color: var(--accent);
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .certificate-card a:hover { text-decoration: underline; }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid rgba(136,146,176,0.1);
-      color: var(--text-muted);
-      font-size: .85rem;
-    }
-  </style>
+            .social-links {
+                gap: 1.5rem;
+            }
+            
+            .certificate-card {
+                padding: 1.5rem;
+            }
+            
+            .certificate-icon {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <nav>
-    <a href="index.html" class="logo"><i class="fas fa-network-wired"></i> Tobias</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-  </nav>
+    <nav>
+        <a href="index.html" class="logo" aria-label="Home">
+            <i class="fas fa-network-wired" aria-hidden="true"></i>
+            <span>Personal Portfolio</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="container">
-    <div class="section-header"><h2>Projects</h2></div>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <h3 class="project-title">MikroTik Configuration</h3>
-        <p class="project-description">
-          Designed and deployed a scalable MikroTik Hotspot system with role-based access (Student, Teacher, Admin),
-          VLAN segmentation, firewall policies, and real-time monitoring dashboards.
-        </p>
-        <div class="project-tech"><span>MikroTik</span> <span>VLAN</span> <span>Hotspot</span> <span>Grafana</span> <span>Firewall</span></div>
-        <div class="project-footer">
-          <a href="https://github.com/tobiasrejanuar" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://drive.google.com/drive/folders/1l68mFyhDtthsG95ObgZoEmejDgk3RIbf?usp=drive_link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+    <section class="hero container fade-in delay-1">
+        <div class="hero-content">
+            <p class="hero-subtitle">
+                <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                <span>cat /etc/personal-portfolio</span>
+            </p>
+            <h1 class="hero-title">Projects & Achievements</h1>
+            <p class="hero-description delay-2">
+                A comprehensive showcase of my projects in computer networking and server technologies, highlighting both practical implementations and certifications that validate my skills in the IT field.
+            </p>
+            
+            <div class="filter-buttons fade-in delay-3">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="network">Networking</button>
+                <button class="filter-btn" data-filter="server">Server</button>
+                <button class="filter-btn" data-filter="security">Security</button>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="project-card">
-        <h3 class="project-title">Linux Server Infrastructure</h3>
-        <p class="project-description">
-          Configured Debian-based servers with automated backups, hardened OpenSSH, Fail2Ban,
-          and Nginx load balancing. Implemented KVM virtualization for lab environments.
-        </p>
-        <div class="project-tech"><span>Debian</span> <span>Fail2Ban</span> <span>KVM</span> <span>Nginx</span> <span>MySQL</span></div>
-        <div class="project-footer">
-          <a href="https://github.com/tobiasrejanuar" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://drive.google.com/drive/folders/1jU0tqFwBRHn5fr22lZfasjx34g4rjaMW?usp=drive_link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+    <section id="projects" class="container">
+        <div class="section-header fade-in">
+            <h2>My Projects</h2>
         </div>
-      </div>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card fade-in delay-1" data-category="network">
+                <div class="project-header">
+                    <i class="fas fa-network-wired project-icon" aria-hidden="true"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1l68mFyhDtthsG95ObgZoEmejDgk3RIbf" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Network Configuration</h3>
+                    <p class="project-description">
+                        Learning, exploring, and applying various networking technologies, from basic configurations to advanced setups, in order to create flexible and professional solutions that meet real-world demands.
+                    </p>
+                    <div class="project-tech">
+                        <span>VLAN</span>
+                        <span>Load Balancing</span>
+                        <span>Switch Management</span>
+                        <span>Firewall</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1l68mFyhDtthsG95ObgZoEmejDgk3RIbf" target="_blank" rel="noopener noreferrer" class="project-drive-link">
+                        <i class="fab fa-google-drive" aria-hidden="true"></i>
+                        View Documentation
+                    </a>
+                </div>
+            </div>
+             
+            <!-- Project 2 -->
+            <div class="project-card fade-in delay-2" data-category="server">
+                <div class="project-header">
+                    <i class="fas fa-server project-icon" aria-hidden="true"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Server</h3>
+                    <p class="project-description">
+                        Designing and configuring server infrastructures with a focus on efficiency, reliability, and scalability, supported by virtualization as a flexible testbed
+                    </p>
+                    <div class="project-tech">
+                        <span>Data Base</span>
+                        <span>VOIP</span>
+                        <span>WEB Server</span>
+                        <span>Hosting Panel</span>
+                        <span>Cloud</span>
 
-      <div class="project-card">
-        <h3 class="project-title">Cybersecurity</h3>
-        <p class="project-description">
-          Built a penetration testing lab with Kali Linux, SIEM integration, and IDS/IPS systems (Snort, Suricata).
-          Conducted simulated attacks with defense response reporting.
-        </p>
-        <div class="project-tech"><span>Kali</span> <span>Snort</span> <span>VPN</span> <span>SIEM</span> <span>Firewall</span></div>
-        <div class="project-footer">
-          <a href="https://github.com/tobiasrejanuar" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" class="project-drive-link">
+                        <i class="fab fa-google-drive" aria-hidden="true"></i>
+                        View Documentation
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="project-card fade-in delay-3" data-category="security">
+                <div class="project-header">
+                    <i class="fas fa-shield-alt project-icon" aria-hidden="true"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Network Security</h3>
+                    <p class="project-description">
+                        Comprehensive network security solutions with firewall rules, VPN access management, and intrusion detection systems to ensure confidentiality, integrity, and availability.
+                    </p>
+                    <div class="project-tech">
+                        <span>Firewall</span>
+                        <span>VPN</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" class="project-drive-link">
+                        <i class="fab fa-google-drive" aria-hidden="true"></i>
+                        View Documentation
+                    </a>
+                </div>
+            </div>
+
+              <!-- Project 4 -->
+            <div class="project-card fade-in delay-4" data-category="server">
+                <div class="project-header">
+                    <i class="fab fa-linux project-icon" aria-hidden="true"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1jU0tqFwBRHn5fr22lZfasjx34g4rjaMW?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Linux OS</h3>
+                    <p class="project-description">
+                        Using Linux as a reliable and open source operating system so it is very flexible for network & server needs.
+                    </p>
+                    <div class="project-tech">
+                        <span>Debian</span>
+                        <span>Ubuntu</span>
+                        <span>Fedora</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1jU0tqFwBRHn5fr22lZfasjx34g4rjaMW?usp=drive_link" target="_blank" rel="noopener noreferrer" class="project-drive-link">
+                        <i class="fab fa-google-drive" aria-hidden="true"></i>
+                        View Documentation
+                    </a>
+                </div>
+            </div>
+
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CERTIFICATES -->
-  <section id="certificates" class="container">
-    <div class="section-header"><h2>Certificates</h2></div>
-    <div class="certificates-grid">
+    <section id="certificates" class="container">
+        <div class="section-header fade-in">
+            <h2>My Certificates</h2>
+        </div>
+        <div class="certificates-grid">
+            <!-- Certificate 1 -->
+            <div class="certificate-card fade-in delay-1">
+                <div class="certificate-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Network Security Awareness</h3>
+                    <span class="certificate-issuer">Network Security</span>
+                    <p class="certificate-date">
+                        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                        2025
+                    </p>
+                </div>
+                <a href="https://drive.google.com/drive/folders/1-qZyfhtAXQgJrMinOnzpEAkNAPeNzyfQ?usp=drive_link" target="_blank" rel="noopener noreferrer" class="certificate-drive-link">
+                    <i class="fab fa-google-drive" aria-hidden="true"></i>
+                    View Certificate
+                </a>
+            </div>
+            
+        </div>
+    </section>
 
-      <div class="certificate-card">
-        <i class="fas fa-certificate fa-3x" style="color: var(--accent);"></i>
-        <h3>Cybersecurity Awareness</h3>
-        <p>Knowledge of penetration testing, ethical hacking</p>
-        <a href="https://drive.google.com/drive/folders/1H4FQOW0INNhJFzfM-RAdJaX5BmEbg1Nd?usp=drive_link" target="_blank">View Credential</a>
-      </div>
+    <section id="contact" class="container">
+        <div class="contact">
+            <p class="contact-subtitle fade-in delay-1">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                <span>Get In Touch</span>
+            </p>
+            <h2 class="contact-title fade-in delay-2">Contact Me</h2>
+            <p class="contact-description fade-in delay-3">
+                For questions or to discuss potential collaborations, please contact me through the following channels.
+            </p>
+            <a href="mailto:tobiasrejanuar@gmail.com" class="cta-btn fade-in delay-4">
+                <span>Email Me</span>
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+            </a>
 
-    </div>
-  </section>
+            <div class="social-links fade-in delay-4">
+                <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                </a>
+                <a href="https://instagram.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="https://t.me/linuxsomebody" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                    <i class="fab fa-telegram" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© <span id="year"></span> Tobias Rejanuar. All rights reserved.</p>
-  </footer>
+    <footer class="fade-in delay-4">
+        <div class="container">
+            <p>© <span id="year"></span> Tobias Rejanuar. All rights reserved.</p>
+        </div>
+    </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            const btn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('.nav-links');
+            const icon = btn.querySelector('i');
+            
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', !isExpanded);
+            nav.classList.toggle('active');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
 
-    // Mobile menu toggle
-    const toggle = document.querySelector(".menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-    toggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-      toggle.innerHTML = navLinks.classList.contains("active")
-        ? '<i class="fas fa-times"></i>'
-        : '<i class="fas fa-bars"></i>';
-    });
-  </script>
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.nav-links').classList.remove('active');
+                    const icon = document.querySelector('.mobile-menu-btn i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Project filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lazy load animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
