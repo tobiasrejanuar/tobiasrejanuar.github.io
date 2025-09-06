@@ -428,19 +428,13 @@
         .delay-4 { animation-delay: 0.4s; }
         .delay-5 { animation-delay: 0.5s; }
         
-        @media (max-width: 1200px) {
+        @media (max-width: 992px) {
             .container {
                 padding: 0 1.5rem;
             }
-        }
-        
-        @media (max-width: 992px) {
+            
             .about-grid {
                 gap: 3rem;
-            }
-            
-            .section-header h2::after {
-                width: 250px;
             }
         }
         
@@ -498,11 +492,6 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .project-card {
-                max-width: 400px;
-                margin: 0 auto;
-            }
         }
         
         @media (max-width: 576px) {
@@ -510,31 +499,13 @@
                 padding: 0 1rem;
             }
             
-            nav {
-                padding: 0 1rem;
-            }
-            
-            .logo span {
-                font-size: 1.1rem;
-            }
-            
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
             .section-header h2::after {
-                display: none;
+                width: 100px;
+                margin-left: 1rem;
             }
             
             .hero {
                 padding-top: 90px;
-                text-align: center;
-            }
-            
-            .hero-subtitle {
-                justify-content: center;
             }
             
             .hero-title span {
@@ -556,41 +527,6 @@
             .cta-btn {
                 width: 100%;
                 justify-content: center;
-            }
-            
-            .project-header {
-                padding: 1rem 1rem 0.5rem;
-            }
-            
-            .project-content {
-                padding: 0.8rem 1rem 1rem;
-            }
-            
-            .project-tech {
-                gap: 0.5rem;
-            }
-            
-            .project-tech span {
-                font-size: 0.75rem;
-                padding: 3px 6px;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .logo span {
-                display: none;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-title span {
-                font-size: 1.8rem;
-            }
-            
-            .project-links {
-                gap: 0.8rem;
             }
         }
     </style>
@@ -729,7 +665,7 @@
                 <div class="project-content">
                     <h3 class="project-title">Network Security</h3>
                     <p class="project-description">
-                        Comprehensive security solution featuring firewall rulesets, VPN access control and intrusion detection systems.
+                        Comprehensive security solution featuring firewall rulesets, VPN access control, and intrusion detection systems.
                     </p>
                     <div class="project-tech">
                         <span>Firewall</span>
