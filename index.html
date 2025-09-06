@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Tobias</title>
-    <meta name="description" content="About-Tobias">
+    <meta name="description" content="About - Tobias">
     <meta name="author" content="Tobias Rejanuar">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2364ffda' d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10 10-4.477 10-10m-8 5h-4v-2h4v2m0-4h-4v-2h4v2m-3-6c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S10.38 5 9 5m6 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S16.38 5 15 5Z'/%3E%3C/svg%3E" type="image/svg+xml">
 
@@ -24,6 +24,13 @@
             --text-primary: #e6f1ff;
             --text-secondary: #ccd6f6;
             --text-muted: #8892b0;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 4rem;
+            --border-radius: 6px;
         }
         
         *, *::before, *::after {
@@ -61,12 +68,12 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 var(--spacing-md);
             width: 100%;
         }
         
         section {
-            padding: 6rem 0;
+            padding: var(--spacing-xxl) 0;
             position: relative;
         }
         
@@ -152,7 +159,7 @@
         
         .hero-subtitle {
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: var(--spacing-sm);
             font-size: 1.2rem;
             display: flex;
             align-items: center;
@@ -162,7 +169,7 @@
         
         .hero-title {
             font-size: clamp(3rem, 8vw, 4.5rem);
-            margin-bottom: 1rem;
+            margin-bottom: var(--spacing-sm);
             line-height: 1.1;
         }
         
@@ -174,7 +181,7 @@
         
         .hero-description {
             max-width: 650px;
-            margin-bottom: 3rem;
+            margin-bottom: var(--spacing-xl);
             font-size: 1.15rem;
             line-height: 1.8;
         }
@@ -183,9 +190,9 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            padding: 1rem 2rem;
+            padding: var(--spacing-sm) var(--spacing-lg);
             border: 2px solid var(--accent);
-            border-radius: 6px;
+            border-radius: var(--border-radius);
             color: var(--accent);
             font-size: 1.05rem;
             font-weight: 600;
@@ -201,7 +208,7 @@
         .section-header {
             display: flex;
             align-items: center;
-            margin-bottom: 4rem;
+            margin-bottom: var(--spacing-xxl);
         }
         
         .section-header h2 {
@@ -216,7 +223,7 @@
             position: relative;
             width: 350px;
             height: 1px;
-            margin-left: 2rem;
+            margin-left: var(--spacing-lg);
             background-color: var(--text-muted);
             opacity: 0.5;
         }
@@ -224,15 +231,15 @@
         .about-grid {
             display: grid;
             grid-template-columns: 3fr 2fr;
-            gap: 4rem;
-            align-items: center;
+            gap: var(--spacing-xxl);
+            align-items: start;
         }
         
         .skills-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
             list-style: none;
         }
         
@@ -241,7 +248,7 @@
             align-items: center;
             gap: 10px;
             font-size: 0.95rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--spacing-xs);
             color: var(--text-secondary);
         }
         
@@ -268,8 +275,8 @@
         
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-md);
         }
         
         .project-card {
@@ -293,7 +300,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 1.5rem 0.5rem;
+            padding: var(--spacing-md) var(--spacing-md) var(--spacing-xs);
         }
         
         .project-icon {
@@ -303,7 +310,7 @@
         
         .project-links {
             display: flex;
-            gap: 1.2rem;
+            gap: var(--spacing-md);
         }
         
         .project-links a {
@@ -317,7 +324,7 @@
         }
         
         .project-content {
-            padding: 1rem 1.5rem 1.5rem;
+            padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -325,11 +332,11 @@
         
         .project-title {
             font-size: 1.4rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: var(--spacing-xs);
         }
         
         .project-description {
-            margin-bottom: 1.2rem;
+            margin-bottom: var(--spacing-md);
             line-height: 1.6;
             flex-grow: 1;
         }
@@ -340,7 +347,7 @@
             gap: 0.7rem;
             font-size: 0.8rem;
             color: var(--accent);
-            margin: 1rem 0;
+            margin: var(--spacing-sm) 0;
         }
 
         .project-tech span {
@@ -354,7 +361,7 @@
             align-items: center;
             gap: 8px;
             margin-top: auto;
-            padding-top: 1rem;
+            padding-top: var(--spacing-sm);
             color: var(--accent);
             font-weight: 500;
             border-top: 1px solid rgba(100, 255, 218, 0.2);
@@ -377,21 +384,21 @@
             justify-content: center;
             gap: 10px;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: var(--spacing-sm);
             font-size: 1.2rem;
             font-weight: 500;
         }
         
         .contact-title {
             font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 1.5rem;
+            margin-bottom: var(--spacing-md);
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 4rem;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xxl);
         }
         
         .social-links a {
@@ -406,7 +413,7 @@
         
         footer {
             text-align: center;
-            padding: 2.5rem 0;
+            padding: var(--spacing-md) 0;
             font-size: 0.85rem;
             color: var(--text-muted);
             border-top: 1px solid rgba(136, 146, 176, 0.1);
@@ -428,19 +435,52 @@
         .delay-4 { animation-delay: 0.4s; }
         .delay-5 { animation-delay: 0.5s; }
         
-        @media (max-width: 992px) {
+        /* Media Queries */
+        @media (max-width: 1200px) {
             .container {
-                padding: 0 1.5rem;
+                padding: 0 var(--spacing-md);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .about-grid {
+                gap: var(--spacing-xl);
             }
             
+            .section-header h2::after {
+                width: 250px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 900px) {
             .about-grid {
-                gap: 3rem;
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+            
+            .about-image {
+                max-width: 280px;
+                margin: 0 auto;
+                order: -1;
+            }
+            
+            .skills-list {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
         @media (max-width: 768px) {
+            :root {
+                --spacing-xl: 2.5rem;
+                --spacing-xxl: 3rem;
+            }
+            
             section {
-                padding: 5rem 0;
+                padding: var(--spacing-xl) 0;
             }
             
             .nav-links {
@@ -451,8 +491,8 @@
                 background-color: var(--secondary);
                 flex-direction: column;
                 align-items: center;
-                padding: 2rem 0;
-                gap: 1.5rem;
+                padding: var(--spacing-lg) 0;
+                gap: var(--spacing-md);
                 display: none;
                 box-shadow: 0 10px 20px rgba(2, 12, 27, 0.8);
             }
@@ -466,23 +506,12 @@
             }
         
             .section-header {
-                margin-bottom: 3rem;
+                margin-bottom: var(--spacing-xl);
             }
             
             .section-header h2::after {
                 width: 150px;
-                margin-left: 1.5rem;
-            }
-        
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        
-            .about-image {
-                max-width: 250px;
-                margin: 2rem auto 0;
-                order: -1;
+                margin-left: var(--spacing-md);
             }
             
             .hero-title span {
@@ -491,21 +520,60 @@
             
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .project-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .social-links {
+                gap: var(--spacing-md);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-sm);
+            }
+            
+            .section-header h2::after {
+                display: none;
+            }
+            
+            .skills-list {
+                grid-template-columns: 1fr;
             }
         }
         
         @media (max-width: 576px) {
-            .container {
-                padding: 0 1rem;
+            :root {
+                --spacing-md: 1.25rem;
+                --spacing-lg: 1.75rem;
             }
             
-            .section-header h2::after {
-                width: 100px;
-                margin-left: 1rem;
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            nav {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            .logo span {
+                font-size: 1.1rem;
             }
             
             .hero {
                 padding-top: 90px;
+                text-align: center;
+            }
+            
+            .hero-subtitle {
+                justify-content: center;
             }
             
             .hero-title span {
@@ -516,17 +584,59 @@
                 font-size: 1rem;
             }
             
-            .skills-list {
-                grid-template-columns: 1fr;
-            }
-
-            .social-links {
-                gap: 1.5rem;
-            }
-            
             .cta-btn {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            .project-header {
+                padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-xs);
+            }
+            
+            .project-content {
+                padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-sm);
+            }
+            
+            .project-tech {
+                gap: 0.5rem;
+            }
+            
+            .project-tech span {
+                font-size: 0.75rem;
+                padding: 3px 6px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo span {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title span {
+                font-size: 1.8rem;
+            }
+            
+            .project-links {
+                gap: var(--spacing-sm);
+            }
+            
+            .about-image {
+                max-width: 220px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .nav-links {
+                gap: var(--spacing-sm);
+            }
+            
+            .hero-subtitle, .contact-subtitle {
+                flex-direction: column;
+                gap: 5px;
             }
         }
     </style>
@@ -557,10 +667,6 @@
             <p class="hero-description delay-2">
                 I study, design, implement, and maintain network and server infrastructure with a focus on security and efficiency.
             </p>
-            <a href="#projects" class="cta-btn delay-3">
-                <span>View Projects</span>
-                <i class="fas fa-arrow-down" aria-hidden="true"></i>
-            </a>
         </div>
     </section>
 
@@ -669,7 +775,7 @@
                 <div class="project-content">
                     <h3 class="project-title">Network Security</h3>
                     <p class="project-description">
-                        Comprehensive security solution featuring firewall rulesets, VPN access control, and intrusion detection systems.
+                        Comprehensive security solution featuring firewall rulesets, VPN access control and intrusion detection systems.
                     </p>
                     <div class="project-tech">
                         <span>Firewall</span>
