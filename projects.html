@@ -468,35 +468,15 @@
         .delay-4 { animation-delay: 0.4s; }
         .delay-5 { animation-delay: 0.5s; }
         
-        /* Media Queries untuk Responsivitas */
-        @media (max-width: 1200px) {
+        @media (max-width: 992px) {
             .container {
                 padding: 0 1.5rem;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .projects-grid, .certificates-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-            
-            .hero-subtitle {
-                flex-direction: column;
-                gap: 5px;
             }
         }
         
         @media (max-width: 768px) {
             section {
                 padding: 5rem 0;
-            }
-            
-            nav {
-                padding: 0 1.5rem;
-            }
-            
-            .logo span {
-                font-size: 1.2rem;
             }
             
             .nav-links {
@@ -511,7 +491,6 @@
                 gap: 1.5rem;
                 display: none;
                 box-shadow: 0 10px 20px rgba(2, 12, 27, 0.8);
-                z-index: 999;
             }
         
             .nav-links.active {
@@ -524,14 +503,11 @@
         
             .section-header {
                 margin-bottom: 3rem;
-                flex-direction: column;
-                align-items: flex-start;
             }
             
             .section-header h2::after {
-                width: 100%;
-                margin-left: 0;
-                margin-top: 1rem;
+                width: 150px;
+                margin-left: 1.5rem;
             }
             
             .hero {
@@ -539,42 +515,8 @@
                 padding-top: 90px;
             }
             
-            .hero-description {
-                font-size: 1rem;
-            }
-            
-            .filter-buttons {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 0.5rem;
-                margin: 2rem -1rem 3rem;
-                padding: 0 1rem;
-            }
-            
-            .filter-btn {
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
-            
             .projects-grid, .certificates-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .project-header, .project-content {
-                padding: 1.2rem;
-            }
-            
-            .certificate-card {
-                padding: 1.5rem;
-            }
-            
-            .social-links {
-                gap: 1.5rem;
-            }
-            
-            .social-links a {
-                font-size: 1.5rem;
             }
         }
         
@@ -583,30 +525,9 @@
                 padding: 0 1rem;
             }
             
-            nav {
-                padding: 0 1rem;
-                height: 70px;
-            }
-            
-            .logo {
-                font-size: 1.2rem;
-            }
-            
-            .logo span {
-                font-size: 1.1rem;
-            }
-            
-            .hero {
-                padding-top: 70px;
-                min-height: 40vh;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
             .section-header h2::after {
-                width: 100%;
+                width: 100px;
+                margin-left: 1rem;
             }
             
             .filter-buttons {
@@ -618,65 +539,16 @@
                 font-size: 0.9rem;
             }
 
-            .project-icon, .certificate-icon {
-                font-size: 2rem;
-            }
-            
-            .project-title {
-                font-size: 1.2rem;
-            }
-            
-            .project-description, .certificate-title {
-                font-size: 1rem;
-            }
-            
-            .certificate-icon {
-                font-size: 2.2rem;
-            }
-            
-            .cta-btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-            }
-            
             .social-links {
-                gap: 1.2rem;
-            }
-            
-            .social-links a {
-                font-size: 1.4rem;
-            }
-            
-            footer {
-                padding: 2rem 0;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .logo span {
-                display: none;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .project-header, .project-content {
-                padding: 1rem;
-            }
-            
-            .project-tech span {
-                font-size: 0.75rem;
-                padding: 3px 6px;
+                gap: 1.5rem;
             }
             
             .certificate-card {
-                padding: 1.2rem;
+                padding: 1.5rem;
             }
             
-            .certificate-drive-link {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.9rem;
+            .certificate-icon {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -909,6 +781,8 @@
                     </a>
                 </div>
             </div>
+
+
         </div>
     </section>
 
@@ -954,6 +828,7 @@
                     View Program Details
                 </a>
             </div>
+            
         </div>
     </section>
 
