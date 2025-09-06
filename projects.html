@@ -8,10 +8,6 @@
     <meta name="author" content="Tobias Rejanuar">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2364ffda' d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10 10-4.477 10-10m-8 5h-4v-2h4v2m0-4h-4v-2h4v2m-3-6c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S10.38 5 9 5m6 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S16.38 5 15 5Z'/%3E%3C/svg%3E" type="image/svg+xml">
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-    
     <!-- Load fonts and icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
@@ -38,7 +34,6 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
         }
         
         h1, h2, h3 {
@@ -165,13 +160,13 @@
         
         .hero-title {
             font-size: clamp(2.5rem, 6vw, 4rem);
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             line-height: 1.1;
         }
         
         .hero-description {
             max-width: 650px;
-            margin: 0 auto 2rem;
+            margin: 1rem auto 2rem;
             font-size: 1.15rem;
             line-height: 1.8;
         }
@@ -397,7 +392,7 @@
             justify-content: center;
             gap: 10px;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin: 2rem 0 1rem;
             font-size: 1.2rem;
             font-weight: 500;
         }
@@ -407,31 +402,11 @@
             margin-bottom: 1.5rem;
         }
         
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 1rem 2rem;
-            border: 2px solid var(--accent);
-            border-radius: 6px;
-            color: var(--accent);
-            font-size: 1.05rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            margin-bottom: 3rem;
-        }
-        
-        .cta-btn:hover {
-            background-color: rgba(100, 255, 218, 0.1);
-            transform: translateY(-3px);
-        }
-        
         .social-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 4rem;
+            margin-top: 2rem;
         }
         
         .social-links a {
@@ -466,7 +441,6 @@
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
         .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
         
         @media (max-width: 992px) {
             .container {
@@ -518,6 +492,14 @@
             .projects-grid, .certificates-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .hero-title {
+                margin-bottom: 0.8rem;
+            }
+            
+            .hero-description {
+                margin: 0.8rem auto 1.5rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -549,6 +531,10 @@
             
             .certificate-icon {
                 font-size: 2.5rem;
+            }
+            
+            .contact-subtitle {
+                margin: 1.5rem 0 0.8rem;
             }
         }
     </style>
@@ -721,7 +707,7 @@
             </div>
 
             <!-- Project 5 -->
-            <div class="project-card fade-in delay-5" data-category="education">
+            <div class="project-card fade-in delay-1" data-category="education">
                 <div class="project-header">
                     <i class="fas fa-brain project-icon" aria-hidden="true"></i>
                     <div class="project-links">
@@ -752,14 +738,14 @@
             </div>
 
             <!-- Project 6 -->
-            <div class="project-card fade-in delay-6" data-category="education">
+            <div class="project-card fade-in delay-2" data-category="education">
                 <div class="project-header">
                     <i class="fas fa-brain project-icon" aria-hidden="true"></i>
                     <div class="project-links">
                         <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <i class="fab fa-github" aria-hidden="true"></i>
                         </a>
-                        <a href="phthon.html" aria-label="View Project Details">
+                        <a href="python.html" aria-label="View Project Details">
                             <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -781,8 +767,6 @@
                     </a>
                 </div>
             </div>
-
-
         </div>
     </section>
 
@@ -828,36 +812,20 @@
                     View Program Details
                 </a>
             </div>
-            
         </div>
     </section>
 
     <section id="contact" class="container">
-        <div class="contact">
-            <p class="contact-subtitle fade-in delay-1">
-                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                <span>Get In Touch</span>
-            </p>
-            <h2 class="contact-title fade-in delay-2">Contact Me</h2>
-            <p class="contact-description fade-in delay-3">
-                For questions or to discuss potential collaborations, please contact me through the following channels.
-            </p>
-            <a href="mailto:tobiasrejanuar@gmail.com" class="cta-btn fade-in delay-4">
-                <span>Email Me</span>
-                <i class="fas fa-envelope" aria-hidden="true"></i>
+        <div class="social-links fade-in delay-4">
+            <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i>
             </a>
-
-            <div class="social-links fade-in delay-4">
-                <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                </a>
-                <a href="https://instagram.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fab fa-instagram" aria-hidden="true"></i>
-                </a>
-                <a href="https://t.me/linuxsomebody" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
-                    <i class="fab fa-telegram" aria-hidden="true"></i>
-                </a>
-            </div>
+            <a href="https://instagram.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://t.me/linuxsomebody" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                <i class="fab fa-telegram" aria-hidden="true"></i>
+            </a>
         </div>
     </section>
 
@@ -869,36 +837,38 @@
 
     <script>
         // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-            const btn = document.querySelector('.mobile-menu-btn');
-            const nav = document.querySelector('.nav-links');
-            const icon = btn.querySelector('i');
-            
-            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-            btn.setAttribute('aria-expanded', !isExpanded);
-            nav.classList.toggle('active');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
         });
 
         // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
-                    document.querySelector('.nav-links').classList.remove('active');
-                    const icon = document.querySelector('.mobile-menu-btn i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                    document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
                 }
             });
         });
 
-        // Smooth scrolling
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
                 if (target) {
                     window.scrollTo({
                         top: target.offsetTop - 80,
@@ -932,7 +902,12 @@
             });
         });
 
-        // Lazy load animations
+        // Lazy load animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -940,7 +915,7 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
         document.querySelectorAll('.fade-in').forEach(el => {
             el.style.animationPlayState = 'paused';
