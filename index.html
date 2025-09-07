@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Tobias</title>
+    <meta name="description" content="About - Tobias">
+    <meta name="author" content="Tobias Rejanuar">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2364ffda' d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10 10-4.477 10-10m-8 5h-4v-2h4v2m0-4h-4v-2h4v2m-3-6c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S10.38 5 9 5m6 0c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5S16.38 5 15 5Z'/%3E%3C/svg%3E" type="image/svg+xml">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Load fonts and icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text-primary: #e6f1ff;
+            --text-secondary: #ccd6f6;
+            --text-muted: #8892b0;
+            --header-height: 80px;
+            --transition: all 0.3s ease;
+            --border-radius: 6px;
+            --box-shadow: 0 10px 20px rgba(2, 12, 27, 0.5);
+        }
+        
+        /* ===== RESET & BASE STYLES ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 1rem);
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-secondary);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background-color: rgba(10, 25, 47, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(2, 12, 27, 0.8);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 5px 0;
+            font-weight: 500;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.2s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0.5rem;
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--header-height);
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .hero-subtitle {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            margin-bottom: 0.5rem; /* Diperkecil dari 1rem */
+            line-height: 1.1;
+        }
+        
+        .hero-title span {
+            display: block;
+            color: var(--text-muted);
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin: 0.8rem 0; /* Ditambahkan margin atas dan bawah */
+        }
+        
+        .hero-description {
+            max-width: 650px;
+            margin: 1.5rem 0 3rem; /* Ditambahkan margin atas */
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+        
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent);
+            border-radius: var(--border-radius);
+            color: var(--accent);
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .cta-btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            white-space: nowrap;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            position: relative;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            display: block;
+            position: relative;
+            width: 350px;
+            height: 1px;
+            margin-left: 2rem;
+            background-color: var(--text-muted);
+            opacity: 0.5;
+        }
+        
+        /* ===== ABOUT SECTION ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .skills-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .about-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            filter: grayscale(100%) contrast(1) brightness(90%);
+            transition: filter 0.3s ease;
+        }
+        
+        .about-image:hover img {
+            filter: grayscale(0%) contrast(1) brightness(100%);
+        }
+        
+        /* ===== PROJECTS SECTION ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+        
+        .project-card {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            transition: var(--transition);
+            overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 1.5rem 0.5rem;
+        }
+        
+        .project-icon {
+            color: var(--accent);
+            font-size: 2.5rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+        
+        .project-links a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .project-links a:hover {
+            color: var(--accent);
+        }
+        
+        .project-content {
+            padding: 1rem 1.5rem 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .project-description {
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin: 1rem 0;
+        }
+
+        .project-tech span {
+            background-color: rgba(100, 255, 218, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .project-drive-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 1rem;
+            color: var(--accent);
+            font-weight: 500;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            transition: var(--transition);
+        }
+        
+        .project-drive-link:hover {
+            color: var(--text-secondary);
+        }
+        
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .contact-subtitle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--accent);
+            margin: 2rem 0 1rem; /* Ditambahkan margin atas dan bawah */
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .contact-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .social-links a {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(136, 146, 176, 0.1);
+        }
+        
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        
+        /* ===== MEDIA QUERIES ===== */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .about-grid {
+                gap: 3rem;
+            }
+            
+            .section-header h2::after {
+                width: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                display: none;
+                box-shadow: 0 10px 20px rgba(2, 12, 27, 0.8);
+                height: auto;
+            }
+        
+            .nav-links.active {
+                display: flex;
+            }
+        
+            .mobile-menu-btn {
+                display: block;
+            }
+        
+            .section-header {
+                margin-bottom: 3rem;
+            }
+            
+            .section-header h2::after {
+                width: 150px;
+                margin-left: 1.5rem;
+            }
+        
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        
+            .about-image {
+                max-width: 250px;
+                margin: 2rem auto 0;
+                order: -1;
+            }
+            
+            .hero-title span {
+                display: inline;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .section-header h2::after {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            
+            .hero {
+                padding-top: calc(var(--header-height) + 1rem);
+            }
+            
+            .hero-title span {
+                display: block;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                gap: 1.5rem;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .project-header {
+                padding: 1rem 1rem 0.5rem;
+            }
+            
+            .project-content {
+                padding: 0.8rem 1rem 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .logo span {
+                font-size: 1.1rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title span {
+                font-size: 1.8rem;
+                margin: 0.5rem 0; /* Diperkecil untuk mobile */
+            }
+            
+            .hero-description {
+                margin: 1rem 0 2rem; /* Diperkecil untuk mobile */
+            }
+            
+            .cta-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+            }
+            
+            .contact-subtitle {
+                margin: 1.5rem 0 0.8rem; /* Diperkecil untuk mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo" aria-label="Home">
+            <i class="fas fa-network-wired" aria-hidden="true"></i>
+            <span>Personal Portfolio</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero container fade-in delay-1">
+        <div class="hero-content">
+            <p class="hero-subtitle">
+                <i class="fas fa-server" aria-hidden="true"></i>
+                <span>Hi, I'm</span>
+            </p>
+            <h1 class="hero-title">Tobias Rejanuar</h1>
+            <span class="hero-title">Network and Operating System Enthusiast !</span>
+            <p class="hero-description delay-2">
+                I study, design, implement, and maintain network and server infrastructure with a focus on security and efficiency.
+            </p>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="section-header fade-in">
+            <h2>About Me</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text fade-in delay-1">
+                <p>
+                    A young man interested in the world of networks and servers. I learn, design, and implement them in real life.
+                </p>
+                <p>
+                    Currently I am in the learning stage and implementing every configuration, both network and server, on a medium scale.
+                </p>
+                <p>
+                    Technical proficiencies:
+                </p>
+                <ul class="skills-list">
+                    <li><i class="fas fa-check" aria-hidden="true"></i> MikroTik Configurations</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Linux Server</li>
+                    <li><i class="fas fa-check" aria-hidden="true"></i> Installation Linux OS</li>
+                </ul>
+            </div>
+            <div class="about-image fade-in delay-2">
+                <img src="picture/tobias.png" alt="Tobias Rejanuar" width="300" height="300" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <div class="section-header fade-in">
+            <h2>Featured Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card fade-in delay-1">
+                <div class="project-header">
+                    <i class="fas fa-network-wired project-icon" aria-hidden="true"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1l68mFyhDtthsG95ObgZoEmejDgk3RIbf" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Network Configurations</h3>
+                    <p class="project-description">
+                        Learn and design various configurations starting from the basics which are expected to produce a configuration that is effective, efficient and flexible in various conditions.
+                    </p>
+                    <div class="project-tech">
+                        <span>VLAN</span>
+                        <span>Load Balancing</span>
+                        <span>Fail Over</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1l68mFyhDtthsG95ObgZoEmejDgk3RIbf" target="_blank" rel="noopener noreferrer" class="project-drive-link">
+                        <i class="fab fa-google-drive" aria-hidden="true"></i>
+                        View Configuration Documentation
+                    </a>
+                </div>
+            </div>
+             
+            <div class="project-card fade-in delay-2">
+                <div class="project-header">
+                    <i class="fas fa-server project-icon" aria-hidden="true"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Server</h3>
+                    <p class="project-description">
+                        Design and configure server infrastructure efficiently and effectively with virtualization for its testbed.
+                    </p>
+                    <div class="project-tech">
+                        <span>Data Base</span>
+                        <span>VOIP</span>
+                        <span>WEB Server</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" class="project-drive-link">
+                        <i class="fab fa-google-drive" aria-hidden="true"></i>
+                        View Configuration Documentation
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card fade-in delay-3">
+                <div class="project-header">
+                    <i class="fas fa-shield-alt project-icon" aria-hidden="true"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Network Security</h3>
+                    <p class="project-description">
+                        Comprehensive security solution featuring firewall rulesets, VPN access control, and intrusion detection systems.
+                    </p>
+                    <div class="project-tech">
+                        <span>Firewall</span>
+                        <span>VPN</span>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1UTcXK14Dujn0tC7niMXzafQ9_FYiyg_y?usp=drive_link" target="_blank" rel="noopener noreferrer" class="project-drive-link">
+                        <i class="fab fa-google-drive" aria-hidden="true"></i>
+                        View Configuration Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <div class="contact">
+            <p class="contact-subtitle fade-in delay-1">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                <span>Get In Touch</span>
+            </p>
+            <h2 class="contact-title fade-in delay-2">Contact Me</h2>
+            <p class="contact-description fade-in delay-3">
+                For questions or to discuss potential collaborations, please contact us through the following channels.
+            </p>
+            <a href="mailto:tobiasrejanuar@gmail.com" class="cta-btn fade-in delay-4">
+                <span>Email Me</span>
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+            </a>
+
+            <div class="social-links fade-in delay-4">
+                <a href="https://github.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                </a>
+                <a href="https://instagram.com/tobiasrejanuar" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="https://t.me/linuxsomebody" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                    <i class="fab fa-telegram" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="fade-in delay-4">
+        <div class="container">
+            <p>© <span id="year"></span> Tobias Rejanuar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            const btn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('.nav-links');
+            const icon = btn.querySelector('i');
+            
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', !isExpanded);
+            nav.classList.toggle('active');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = !isExpanded ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.nav-links').classList.remove('active');
+                    const icon = document.querySelector('.mobile-menu-btn i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - 80;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Lazy load animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Handle resize events to fix any layout issues
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            document.body.classList.add('resize-animation-stopper');
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                document.body.classList.remove('resize-animation-stopper');
+            }, 400);
+            
+            // Close mobile menu if open when resizing to larger screen
+            if (window.innerWidth > 768) {
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', 'false');
+                const icon = document.querySelector('.mobile-menu-btn i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
