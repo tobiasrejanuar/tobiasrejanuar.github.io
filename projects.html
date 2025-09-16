@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+c<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -535,6 +535,31 @@
             
             .contact-subtitle {
                 margin: 1.5rem 0 0.8rem;
+            }
+        }
+
+        /* Perbaikan khusus untuk judul navbar di perangkat sangat kecil */
+        @media (max-width: 400px) {
+            .logo {
+                font-size: 1.1rem; /* Mengurangi ukuran font judul */
+                gap: 8px; /* Mengurangi jarak antara ikon dan teks */
+            }
+            
+            .logo span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 140px; /* Membatasi lebar teks */
+            }
+            
+            nav {
+                padding: 0 3%; /* Mengurangi padding navbar */
+            }
+        }
+
+        @media (max-width: 350px) {
+            .logo span {
+                max-width: 120px; /* Lebih sempit untuk layar sangat kecil */
             }
         }
     </style>
