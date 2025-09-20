@@ -469,7 +469,7 @@
             
             .hero {
                 min-height: 50vh;
-                padding-top: calc(var(--header-height) + 2rem)
+                padding-top: calc(var(--header-height) + 2rem);
             }
             
             .projects-grid, .certificates-grid {
@@ -482,6 +482,12 @@
             
             .hero-description {
                 margin: 0.8rem auto 1.5rem;
+            }
+            
+            /* Perbaikan ukuran font untuk hero subtitle di mobile */
+            .hero-subtitle {
+                font-size: 1rem;
+                flex-wrap: wrap;
             }
         }
         
@@ -526,6 +532,25 @@
             .contact-subtitle {
                 margin: 1.5rem 0 0.8rem;
             }
+            
+            /* Perbaikan tambahan untuk tampilan mobile kecil */
+            .hero {
+                padding-top: calc(var(--header-height) + 1.5rem);
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+                margin: 0.5rem auto 1.5rem;
+            }
         }
 
         /* Perbaikan khusus untuk judul navbar di perangkat sangat kecil */
@@ -535,37 +560,41 @@
                 gap: 8px;
             }
             
+            /* Menampilkan teks lengkap di navbar untuk mobile */
             .logo span {
                 white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 140px;
+                overflow: visible;
+                text-overflow: clip;
+                max-width: none;
             }
             
             nav {
-                padding: 0 3%;
+                padding: 0 4%;
             }
             
             .hero-subtitle {
-                font-size: 2rem;
+                font-size: 0.85rem;
             }
             
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
             }
             
             .hero-description {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             
             .filter-btn {
                 padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 350px) {
+            /* Memastikan teks navbar tetap terlihat lengkap */
             .logo span {
-                max-width: 120px;
+                font-size: 0.9rem;
+                max-width: none;
             }
             
             .project-header, .project-content {
@@ -574,6 +603,16 @@
             
             .certificate-card {
                 padding: 1rem;
+            }
+            
+            /* Perbaikan layout filter buttons untuk layar sangat kecil */
+            .filter-buttons {
+                gap: 0.3rem;
+            }
+            
+            .filter-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.75rem;
             }
         }
     </style>
