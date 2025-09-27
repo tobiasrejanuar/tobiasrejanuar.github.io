@@ -442,7 +442,7 @@
                 <div class="config-images">
                     <div class="config-image">
                         <img src="picture/nasserver/debianlogo.png">
-                        <div class="image-caption">Gambar 1.1: OS Debian 12</div>
+                        <div class="image-caption">Gambar 1.1: OS Debian</div>
                     </div>
                     <div class="config-image">
                         <img src="picture/nasserver/sambalogo.png">
@@ -476,7 +476,6 @@
                 <div class="code-block">
                     systemctl restart networking
                 </div>
-
             </div>
         </div>
 
@@ -486,7 +485,7 @@
                 <h3>Update & Upgrade Sistem</h3>
             </div>
             <div class="project-report-content">
-                <p>Langkah selanjutnya adalah update & upgrade sistem agar menjadi paling update :</p>
+                <p>Langkah selanjutnya adalah update & upgrade sistem agar repository menjadi paling update :</p>
                 
                 <div class="config-images">
                     <div class="config-image">
@@ -573,7 +572,6 @@
                 <div class="code-block">
                     chmod -R 777 /srv/nas/public
                 </div>
-
             </div>
         </div>
 
@@ -599,7 +597,7 @@
                 </div>
 
                 <div class="code-block">
-                    <li>Tambahkan di baris paling bawah</li>
+                    <li>Tambahkan di baris paling bawah :</li>
                     [NAS_Public]
                     path = /srv/nas/public
                     browseable = yes
@@ -612,7 +610,6 @@
                 <div class="code-block">
                     systemctl restart smbd
                 </div>
-
             </div>
         </div>
 
@@ -640,7 +637,6 @@
                 <div class="code-block">
                     systemctl enable nginx --now
                 </div>
-
             </div>
         </div>
 
@@ -664,7 +660,6 @@
                 <div class="code-block">
                     curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
                 </div>
-
             </div>
         </div>
 
@@ -688,7 +683,6 @@
                 <div class="code-block">
                     mkdir -p /srv/nas/web
                 </div>
-
             </div>
         </div>
 
@@ -712,7 +706,6 @@
                 <div class="code-block">
                     filebrowser -r /srv/nas/public --address 0.0.0.0 --port 8080 &
                 </div>
-
             </div>
         </div>
 
