@@ -659,7 +659,7 @@
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Hotspot Mikrotik</h3>
+                    <h3 class="project-title">Hotspot (Mikrotik)</h3>
                     <p class="project-description">
                         This configuration demonstrates how to set up WiFi access on a Mikrotik router using a single SSID and password for authentication. Users can connect to the network simply by entering the same password, streamlining the connection process.
                     </p>
@@ -701,7 +701,7 @@
                 </div>
             </div>
             
-            <div class="project-card fade-in delay-3" data-category="security">
+            <div class="project-card fade-in delay-3" data-category="security server">
                 <div class="project-header">
                     <i class="fas fa-shield-alt project-icon" aria-hidden="true"></i>
                     <div class="project-links">
@@ -726,32 +726,7 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in delay-4" data-category="server">
-                <div class="project-header">
-                    <i class="fab fa-linux project-icon" aria-hidden="true"></i>
-                    <div class="project-links">
-                        <a href="https://drive.google.com/drive/folders/1jU0tqFwBRHn5fr22lZfasjx34g4rjaMW?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
-                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Linux OS Implementation</h3>
-                    <p class="project-description">
-                        Leveraging Linux as a reliable, open-source operating system for network and server applications, providing flexibility, security, and optimal performance. This setup supports efficient server and network management, a variety of software tools, and customization for specific project needs.
-                    </p>
-                    <div class="project-tech">
-                        <span>Linux</span>
-                        <span>Operating System</span>
-                    </div>
-                    <a href="https://drive.google.com/drive/folders/1jU0tqFwBRHn5fr22lZfasjx34g4rjaMW?usp=drive_link" target="_blank" rel="noopener noreferrer" class="project-drive-link">
-                        <i class="fab fa-google-drive" aria-hidden="true"></i>
-                        View Documentation
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card fade-in delay-1" data-category="education">
+            <div class="project-card fade-in delay-4" data-category="education">
                 <div class="project-header">
                     <i class="fas fa-brain project-icon" aria-hidden="true"></i>
                     <div class="project-links">
@@ -776,7 +751,7 @@
                 </div>
             </div>
 
-            <div class="project-card fade-in delay-2" data-category="education">
+            <div class="project-card fade-in delay-4" data-category="education">
                 <div class="project-header">
                     <i class="fas fa-code project-icon" aria-hidden="true"></i>
                     <div class="project-links">
@@ -800,6 +775,33 @@
                     </a>
                 </div>
             </div>
+
+            <div class="projects-grid">
+            <div class="project-card fade-in delay-4" data-category="network security">
+                <div class="project-header">
+                    <i class="fas fa-ban project-icon" aria-hidden="true"></i>
+                    <div class="project-links">
+                        <a href="blockwebsite-mikrotik.html" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Block Website (Mikrotik)</h3>
+                    <p class="project-description">
+                        This configuration shows how to block websites on a Mikrotik router using Layer 7 protocol with regex filtering. By matching domain patterns, the router can effectively restrict access to unwanted sites in a simple and efficient way.
+                    </p>
+                    <div class="project-tech">
+                        <span>Mikrotik</span>
+                        <span>Block Website</span>
+                    </div>
+                    <a href="blockwebsite-mikrotik.html" class="project-drive-link">
+                        <i class="fas fa-book-open" aria-hidden="true"></i>
+                        View Learning Report
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -862,6 +864,29 @@
             <p>© <span id="year"></span> Tobias Rejanuar. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const projectCards = document.querySelectorAll(".project-card");
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const filter = btn.getAttribute("data-filter");
+
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute("data-category").split(" ");
+                    if (filter === "all" || categories.includes(filter)) {
+                        card.style.display = "flex";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
