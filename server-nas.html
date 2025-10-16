@@ -401,7 +401,7 @@
     <nav>
         <a href="index.html" class="logo" aria-label="Home">
             <i class="fas fa-server" aria-hidden="true"></i>
-            <span>NAS Server</span>
+            <span>NAS Server (Filebrowser)</span>
         </a>
         <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
             <i class="fas fa-bars" aria-hidden="true"></i>
@@ -414,9 +414,9 @@
 
     <section class="hero container fade-in delay-1">
         <div class="hero-content">
-            <h1 class="hero-title">Konfigurasi NAS Server pada Debian Menggunakan Samba dan Web File Manager</h1>
+            <h1 class="hero-title">Konfigurasi NAS Server pada Debian menggunakan Filebrowser</h1>
             <p class="hero-description delay-2">
-               Konfigurasi ini membahas implementasi server penyimpanan terpusat (NAS / Network Attached Storage) berbasis Debian 12 yang dapat diakses melalui jaringan lokal. Server ini menyediakan layanan berbagi file menggunakan Samba serta akses berbasis web untuk unggah dan unduh file. Dengan konfigurasi tersebut, NAS dapat dimanfaatkan sebagai media penyimpanan tambahan yang praktis, mudah diakses berbagai perangkat, dan fleksibel untuk dikembangkan lebih lanjut.
+               Konfigurasi ini membahas implementasi server penyimpanan terpusat (NAS / Network Attached Storage) berbasis Debian 12 yang dapat diakses melalui jaringan lokal. Server ini menyediakan layanan berbagi file berbasis web untuk unggah dan unduh file. Dengan konfigurasi tersebut, NAS dapat dimanfaatkan sebagai media penyimpanan tambahan yang praktis, mudah diakses berbagai perangkat, dan fleksibel untuk dikembangkan lebih lanjut.
             </p>
         </div>
     </section>
@@ -445,52 +445,26 @@
                         <div class="image-caption">Gambar 1.1: Linux Debian</div>
                     </div>
                     <div class="config-image">
-                        <img src="picture/nasserver/sambalogo.png">
-                        <div class="image-caption">Gambar 1.2: Samba Server</div>
+                        <img src="picture/nasserver/filebrowser.png">
+                        <div class="image-caption">Gambar 1.2: Filebrowser</div>
                     </div>
                 </div>
             </div>
         </div>
         
+
         <div class="config-step fade-in delay-2">
             <div class="config-step-header">
                 <div class="step-number">2</div>
-                <h3>Setting Network</h3>
+                <h3>Update & Upgrade Sistem</h3>
             </div>
             <div class="project-report-content">
-                <p>Langkah pertama adalah mengkonfigurasi jaringan, dimana ini menggunakan ip satu segmen dengan router (192.168.1.x) setelah selesai setting simpan dengan ctrl o + ctrl x dan selanjutnya restart :</p>
+                <p>Langkah pertama adalah update & upgrade sistem agar repository menjadi paling update :</p>
                 
                 <div class="config-images">
                     <div class="config-image">
                         <img src="picture/nasserver/1.png">
-                        <div class="image-caption">Gambar 2.1: Setting Network</div>
-                    </div>
-                </div>
-
-                <p>Commands :</p>
-                
-                <div class="code-block">
-                    nano /etc/network/interfaces
-                </div>
-
-                <div class="code-block">
-                    systemctl restart networking
-                </div>
-            </div>
-        </div>
-
-        <div class="config-step fade-in delay-3">
-            <div class="config-step-header">
-                <div class="step-number">3</div>
-                <h3>Update & Upgrade Sistem</h3>
-            </div>
-            <div class="project-report-content">
-                <p>Langkah selanjutnya adalah update & upgrade sistem agar repository menjadi paling update :</p>
-                
-                <div class="config-images">
-                    <div class="config-image">
-                        <img src="picture/nasserver/2.png">
-                        <div class="image-caption">Gambar 3.1: Update Sistem</div>
+                        <div class="image-caption">Gambar 2.1: Update Sistem</div>
                     </div>
                 </div>
                 
@@ -502,9 +476,9 @@
             </div>
         </div>
         
-        <div class="config-step fade-in delay-4">
+        <div class="config-step fade-in delay-3">
             <div class="config-step-header">
-                <div class="step-number">4</div>
+                <div class="step-number">3</div>
                 <h3>Install Paket Dasar</h3>
             </div>
             <div class="project-report-content">
@@ -512,146 +486,31 @@
                 
                 <div class="config-images">
                     <div class="config-image">
+                        <img src="picture/nasserver/2.png">
+                        <div class="image-caption">Gambar 3.1: Install Paket Dasar</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    apt install curl wget nano -y
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">4</div>
+                <h3>Install Filebrowser</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah Install Filebrowser :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
                         <img src="picture/nasserver/3.png">
-                        <div class="image-caption">Gambar 4.1: Install Paket Dasar</div>
-                    </div>
-                </div>
-                
-                <p>Commands :</p>
-                
-                <div class="code-block">
-                    apt install sudo vim htop curl wget net-tools unzip ufw fail2ban gnupg2 -y
-                </div>
-            </div>
-        </div>
-
-        <div class="config-step fade-in delay-4">
-            <div class="config-step-header">
-                <div class="step-number">5</div>
-                <h3>Install Samba Server</h3>
-            </div>
-            <div class="project-report-content">
-                <p>Langkah selanjutnya adalah install samba server :</p>
-                
-                <div class="config-images">
-                    <div class="config-image">
-                        <img src="picture/nasserver/4.png">
-                        <div class="image-caption">Gambar 5.1: Install Samba Server</div>
-                    </div>
-                </div>
-                
-                <p>Commands :</p>
-                
-                <div class="code-block">
-                    apt install samba -y
-                </div>
-            </div>
-        </div>
-
-        <div class="config-step fade-in delay-4">
-            <div class="config-step-header">
-                <div class="step-number">6</div>
-                <h3>Buat Directory</h3>
-            </div>
-            <div class="project-report-content">
-                <p>Langkah selanjutnya adalah membuat directory untuk share :</p>
-                
-                <div class="config-images">
-                    <div class="config-image">
-                        <img src="picture/nasserver/5.png">
-                        <div class="image-caption">Gambar 6.1: Membuat Directory</div>
-                    </div>
-                </div>
-                
-                <p>Commands :</p>
-                
-                <div class="code-block">
-                    mkdir -p /srv/nas/public
-                </div>
-
-                <div class="code-block">
-                    chmod -R 777 /srv/nas/public
-                </div>
-            </div>
-        </div>
-
-        <div class="config-step fade-in delay-4">
-            <div class="config-step-header">
-                <div class="step-number">7</div>
-                <h3>Konfigurasi Samba Server</h3>
-            </div>
-            <div class="project-report-content">
-                <p>Langkah selanjutnya adalah mengkonfigurasi samba server dan restart jika sudah selesai konfigurasi :</p>
-                
-                <div class="config-images">
-                    <div class="config-image">
-                        <img src="picture/nasserver/6.png">
-                        <div class="image-caption">Gambar 7.1: Mengkonfigurasi Samba Server</div>
-                    </div>
-                </div>
-                
-                <p>Commands :</p>
-                
-                <div class="code-block">
-                    nano /etc/samba/smb.conf
-                </div>
-
-                <div class="code-block">
-                    <li>Tambahkan di baris paling bawah :</li>
-                    [NAS_Public]
-                    path = /srv/nas/public
-                    browseable = yes
-                    writable = yes
-                    guest ok = yes
-                    create mask = 0666
-                    directory mask = 0777
-                </div>
-
-                <div class="code-block">
-                    systemctl restart smbd
-                </div>
-            </div>
-        </div>
-
-        <div class="config-step fade-in delay-4">
-            <div class="config-step-header">
-                <div class="step-number">8</div>
-                <h3>Install Nginx</h3>
-            </div>
-            <div class="project-report-content">
-                <p>Langkah selanjutnya adalah Install nginx dan aktifkan setelahnya :</p>
-                
-                <div class="config-images">
-                    <div class="config-image">
-                        <img src="picture/nasserver/7.png">
-                        <div class="image-caption">Gambar 8.1: Install Nginx</div>
-                    </div>
-                </div>
-                
-                <p>Commands :</p>
-                
-                <div class="code-block">
-                    apt install nginx php-fpm php-zip php-mbstring php-curl -y
-                </div>
-
-                <div class="code-block">
-                    systemctl enable nginx --now
-                </div>
-            </div>
-        </div>
-
-        <div class="config-step fade-in delay-4">
-            <div class="config-step-header">
-                <div class="step-number">9</div>
-                <h3>Install File Browser</h3>
-            </div>
-            <div class="project-report-content">
-                <p>Langkah selanjutnya adalah Install File Browser :</p>
-                
-                <div class="config-images">
-                    <div class="config-image">
-                        <img src="picture/nasserver/8.png">
-                        <div class="image-caption">Gambar 9.1: Install File Browser</div>
+                        <div class="image-caption">Gambar 4.1: Install Filebrowser</div>
                     </div>
                 </div>
                 
@@ -665,65 +524,171 @@
 
         <div class="config-step fade-in delay-4">
             <div class="config-step-header">
+                <div class="step-number">5</div>
+                <h3>Jalankan Filebrowser Sementara</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah jalankan filebrowser untuk sekedar inisiasi database, setelah itu ctrl c :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/nasserver/4.png">
+                        <div class="image-caption">Gambar 5.1: Jalankan Filebrowser Sementara</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+
+                <div class="code-block">
+                    filebrowser -r /home
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">6</div>
+                <h3>Mengubah Password Admin</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah mengubah password administrator sesuai yang diinginkan :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/nasserver/5.png">
+                        <div class="image-caption">Gambar 6.1: Mengubah Password Admin</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    filebrowser users update admin --password tobiasrejanuar
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">7</div>
+                <h3>Membuat Directory Service</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah membuat directory service agar filebrowser dapat jalan secara otomatis :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/nasserver/6.png">
+                        <div class="image-caption">Gambar 7.1: Membuat Directory Service</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    nano /etc/systemd/system/filebrowser.service
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">8</div>
+                <h3>Isi Perintah Service</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah mengisi perintah ini agar otomatis aktif tiap boot :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/nasserver/7.png">
+                        <div class="image-caption">Gambar 8.1: Isi Perintah Service</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                   <pre>
+[Unit]
+Description=File Browser
+Documentation=https://filebrowser.org
+After=network.target
+
+[Service]
+User=root
+Group=root
+
+ExecStart=/usr/local/bin/filebrowser \
+  -r /home \
+  --address 0.0.0.0 \
+  --port 8080 \
+  --database /var/lib/filebrowser/filebrowser.db \
+  --log /var/log/filebrowser/filebrowser.log
+
+Restart=always
+RestartSec=5
+
+NoNewPrivileges=true
+LimitNOFILE=65535
+
+StandardOutput=append:/var/log/filebrowser/output.log
+StandardError=append:/var/log/filebrowser/error.log
+
+[Install]
+WantedBy=multi-user.target
+</pre>
+
+                </div>
+            </div>
+        </div>
+
+                <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">9</div>
+                <h3>Mengaktifkan Service</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah mengaktifkan service :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/nasserver/8.png">
+                        <div class="image-caption">Gambar 9.1: Mengaktifkan Service</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    systemctl daemon-reload
+                </div>
+
+                <div class="code-block">
+                    systemctl enable --now filebrowser
+                </div>
+
+                <div class="code-block">
+                    systemctl status filebrowser
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
                 <div class="step-number">10</div>
-                <h3>Membuat Directory Data</h3>
-            </div>
-            <div class="project-report-content">
-                <p>Langkah selanjutnya adalah Membuat Directory Data :</p>
-                
-                <div class="config-images">
-                    <div class="config-image">
-                        <img src="picture/nasserver/9.png">
-                        <div class="image-caption">Gambar 10.1: Membuat Directory Data</div>
-                    </div>
-                </div>
-                
-                <p>Commands :</p>
-                
-                <div class="code-block">
-                    mkdir -p /srv/nas/web
-                </div>
-            </div>
-        </div>
-
-        <div class="config-step fade-in delay-4">
-            <div class="config-step-header">
-                <div class="step-number">11</div>
-                <h3>Menjalankan File Browser</h3>
-            </div>
-            <div class="project-report-content">
-                <p>Langkah selanjutnya adalah menjalankan file browser :</p>
-                
-                <div class="config-images">
-                    <div class="config-image">
-                        <img src="picture/nasserver/10.png">
-                        <div class="image-caption">Gambar 11.1: Menjalankan File Browser</div>
-                    </div>
-                </div>
-                
-                <p>Commands :</p>
-                
-                <div class="code-block">
-                    filebrowser -r /srv/nas/public --address 0.0.0.0 --port 8080 &
-                </div>
-            </div>
-        </div>
-
-        <div class="config-step fade-in delay-4">
-            <div class="config-step-header">
-                <div class="step-number">12</div>
                 <h3>Pengujian</h3>
             </div>
             <div class="project-report-content">
-                <p>Langkah terakhir adalah menguji dengan akses lewat browser http://192.168.1.25:8080 dengan username = admin dan password yang tertera saat menjalankan file browser :</p>
+                <p>Langkah terakhir adalah menguji dengan akses lewat browser http://ipserver:8080 dengan username = admin dan password yang telah dibuat sebelumnya :</p>
                 <div class="config-images">
                     <div class="config-image">
-                        <img src="picture/nasserver/11.png">
-                        <div class="image-caption">Gambar 12.1: Pengujian Login</div>
+                        <img src="picture/nasserver/9.png">
+                        <div class="image-caption">Gambar 10.1: Pengujian Login</div>
                     </div>
                     <div class="config-image">
-                        <img src="picture/nasserver/12.png">
-                        <div class="image-caption">Gambar 12.2: Pengujian File</div>
+                        <img src="picture/nasserver/10.png">
+                        <div class="image-caption">Gambar 10.2: Pengujian File</div>
                     </div>
                 </div>
                 
