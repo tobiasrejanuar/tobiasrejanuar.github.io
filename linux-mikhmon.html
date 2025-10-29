@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Konfigurasi Instalasi Mikhmon</title>
+    <meta name="description" content="Konfigurasi Instalasi Mikhmon">
+    <meta name="author" content="Tobias Rejanuar">
+    <link rel="icon" type="image/png" href="picture/icon.png">
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text-primary: #e6f1ff;
+            --text-secondary: #ccd6f6;
+            --text-muted: #a1accf;
+        }
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-secondary);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 6rem 0;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: rgba(10, 25, 47, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(2, 12, 27, 0.8);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 5px 0;
+            font-weight: 500;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.2s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+        
+        .hero-description {
+            max-width: 650px;
+            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            white-space: nowrap;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            position: relative;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            display: block;
+            position: relative;
+            width: 350px;
+            height: 1px;
+            margin-left: 2rem;
+            background-color: var(--text-muted);
+            opacity: 0.5;
+        }
+        
+        .config-step {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: var(--secondary);
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .config-step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        
+        .config-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .config-image {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .config-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .config-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-caption {
+            padding: 1rem;
+            background-color: rgba(10, 25, 47, 0.7);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        
+        .code-block {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: monospace;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--accent);
+        }
+        
+        .note-box {
+            background-color: rgba(100, 255, 218, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .note-box h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            color: var(--accent);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(136, 146, 176, 0.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                display: none;
+                box-shadow: 0 10px 20px rgba(2, 12, 27, 0.8);
+            }
+        
+            .nav-links.active {
+                display: flex;
+            }
+        
+            .mobile-menu-btn {
+                display: block;
+            }
+        
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+            
+            .section-header h2::after {
+                width: 150px;
+                margin-left: 1.5rem;
+            }
+            
+            .config-step {
+                padding: 1.5rem;
+            }
+            
+            .hero {
+                min-height: 50vh;
+                padding-top: 90px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.8rem;
+                line-height: 1.3;
+                word-break: break-word;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .section-header h2 {
+                white-space: normal;
+                text-align: left;
+            }
+
+            .section-header h2::after {
+                width: 60px;
+                margin-left: 0.5rem;
+            }
+
+            .config-images {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .config-image img {
+                width: 100%;
+                height: auto;
+            }
+
+            .config-step {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo" aria-label="Home">
+            <i class="fas fa-laptop-code project-icon" aria-hidden="true"></i>
+            <span>Mikhmon</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero container fade-in delay-1">
+        <div class="hero-content">
+            <h1 class="hero-title">Konfigurasi Instalasi Mikhmon Pada Linux Debian / Ubuntu</h1>
+            <p class="hero-description delay-2">
+               Konfigurasi ini menjelaskan cara menginstal MikroTik Hotspot Monitor (Mikhmon) pada sistem Linux, khususnya Debian dan Ubuntu. Karena kedua distribusi ini cukup mirip dalam hal struktur dan manajemen paket, panduan ini bisa digunakan untuk keduanya dengan mudah.
+            </p>
+        </div>
+    </section>
+
+    <section id="config-steps" class="container">
+        <div class="section-header fade-in">
+            <h2>Langkah Konfigurasi</h2>
+        </div>
+        
+        <div class="config-step fade-in delay-1">
+            <div class="config-step-header">
+                <div class="step-number">1</div>
+                <h3>Persiapan Awal</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Sebelum memulai konfigurasi, pastikan perangkat berikut sudah dipersiapkan :</p>
+                <ul>
+                    <li>Laptop / PC / Server dengan sistem operasi linux debian / ubuntu</li>
+                    <li>Akses root atau user dengan privilege sudo</li>
+                    <li>Koneksi internet yang stabil</li>
+                </ul>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-nas/debianlogo.png">
+                        <div class="image-caption">Gambar 1.1: Linux Debian</div>
+                    </div>
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/mikhmonn.png">
+                        <div class="image-caption">Gambar 1.2: Mikhmon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="config-step fade-in delay-2">
+            <div class="config-step-header">
+                <div class="step-number">2</div>
+                <h3>Update & Upgrade Sistem</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah pertama adalah update & upgrade sistem agar repository menjadi paling update :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/1.png">
+                        <div class="image-caption">Gambar 2.1: Update Sistem</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    apt update && apt upgrade -y
+                </div>
+            </div>
+        </div>
+        
+        <div class="config-step fade-in delay-3">
+            <div class="config-step-header">
+                <div class="step-number">3</div>
+                <h3>Instal Paket Pendukung</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah instal paket pendukung untuk mikhmon :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/2.png">
+                        <div class="image-caption">Gambar 3.1: Instal Paket Pendukung</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    sudo apt install apache2 php php-cli php-curl php-mbstring unzip wget -y
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">4</div>
+                <h3>Masuk Ke Folder Web Server</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah masuk ke folder web server default :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/3.png">
+                        <div class="image-caption">Gambar 4.1: Masuk Ke Folder Web Server</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    cd /var/www/html
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">5</div>
+                <h3>Instal Paket Mikhmon</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah menginstal paket mikhmon :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/4.png">
+                        <div class="image-caption">Gambar 5.1: Instal Paket Mikhmon</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    sudo wget https://github.com/laksa19/mikhmonv3/archive/refs/heads/master.zip -O mikhmon.zip
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">6</div>
+                <h3>Ekstrak File Mikhmon</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah mengekstrak file mikhmon, agar file aplikasi tersedia dalam bentuk folder dan siap digunakan oleh web server :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/5.png">
+                        <div class="image-caption">Gambar 6.1: Ekstrak File Mikhmon</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    sudo unzip mikhmon.zip
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">7</div>
+                <h3>Mengganti Nama File</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah mengganti nama folder hasil ekstrak dari mikhmonv3-master menjadi mikhmon agar lebih singkat dan mudah diingat untuk mempermudah pengelolaan dan akses aplikasi :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/6.png">
+                        <div class="image-caption">Gambar 7.1: Mengganti Nama File</div>
+                    </div>
+                </div>
+
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    sudo mv mikhmonv3-master mikhmon
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">8</div>
+                <h3>Mengubah Kepemilikan Folder</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah mengubah kepemilikan folder agar apache punya hak akses penuh untuk membaca, menulis, dan menjalankan file di folder tersebut, sehingga aplikasi berjalan lancar :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/7.png">
+                        <div class="image-caption">Gambar 8.1: Mengubah Kepemilikan Folder</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    sudo chown -R www-data:www-data /var/www/html/mikhmon
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">9</div>
+                <h3>Memberikan Hak Akses Kepada Pemilik</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah memberikan hak akses baca, tulis, dan eksekusi kepada pemilik, serta baca dan eksekusi kepada grup dan pengguna lain di folder mikhmon. :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/8.png">
+                        <div class="image-caption">Gambar 9.1: Memberikan Hak Akses Kepada Pemilik</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    sudo chmod -R 755 /var/www/html/mikhmon
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">10</div>
+                <h3>Buka File mikhmon.conf</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah masuk ke dalam file konfigurasi apache untuk mikhmon :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/9.png">
+                        <div class="image-caption">Gambar 10.1: Buka File mikhmon.conf</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    sudo nano /etc/apache2/sites-available/mikhmon.conf
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">11</div>
+                <h3>Isi Konfigurasi mikhmon.conf</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah mengisi konfigurasi pada mikhmon.conf :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/10.png">
+                        <div class="image-caption">Gambar 11.1: Isi Konfigurasi mikhmon.conf</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    <pre><code>&lt;VirtualHost *:80&gt;
+    DocumentRoot /var/www/html/mikhmon
+    ServerName mikhmon.local
+
+    &lt;Directory /var/www/html/mikhmon&gt;
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">12</div>
+                <h3>Mengaktifkan Mikhmon</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah mengaktifkan mikhmon :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/11.png">
+                        <div class="image-caption">Gambar 12.1: Mengaktifkan Mikhmon</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    <pre><code>sudo a2ensite mikhmon.conf
+sudo systemctl reload apache2</code></pre>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">13</div>
+                <h3>Pengujian</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah terakhir adalah menguji mikhmon di browser dengan username mikhmon dan password 1234 :</p>
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/linux-mikhmon/12.png">
+                        <div class="image-caption">Gambar 13.1: Pengujian Mikhmon Di Browser</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    http://localhost/mikhmon
+                </div>
+
+                <div class="note-box">
+                    <h4><i class="fas fa-lightbulb"></i> Tips Penting</h4>
+                    <p>Pastikan sistem sudah ter-update dengan menjalankan <code>sudo apt update && sudo apt upgrade</code> sebelum memulai konfigurasi.</p>
+                </div>
+            </div>
+        </div>
+        
+        <a href="projects.html" class="back-btn fade-in delay-4">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back</span>
+        </a>
+    </section>
+
+    <footer class="fade-in delay-4">
+    <div class="container">
+        <p>© <span id="year"></span> Tobias Rejanuar. All rights reserved.</p>
+    </div>
+    </footer>
+
+    <script>
+        const startYear = 2025;
+        const currentYear = new Date().getFullYear();
+        document.getElementById('year').textContent =
+        currentYear > startYear ? `${startYear}–${currentYear}` : startYear;
+        
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => {
+                el.style.opacity = 1;
+                el.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
