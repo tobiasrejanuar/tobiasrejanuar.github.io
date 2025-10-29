@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Konfigurasi VPN Server</title>
+    <meta name="description" content="Konfigurasi VPN Server">
+    <meta name="author" content="Tobias Rejanuar">
+    <link rel="icon" type="image/png" href="picture/icon.png">
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text-primary: #e6f1ff;
+            --text-secondary: #ccd6f6;
+            --text-muted: #a1accf;
+        }
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-secondary);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 6rem 0;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: rgba(10, 25, 47, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(2, 12, 27, 0.8);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--accent);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 5px 0;
+            font-weight: 500;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.2s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+        
+        .hero-description {
+            max-width: 650px;
+            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            white-space: nowrap;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            position: relative;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            display: block;
+            position: relative;
+            width: 350px;
+            height: 1px;
+            margin-left: 2rem;
+            background-color: var(--text-muted);
+            opacity: 0.5;
+        }
+        
+        .config-step {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: var(--secondary);
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .config-step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        
+        .config-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .config-image {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .config-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .config-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-caption {
+            padding: 1rem;
+            background-color: rgba(10, 25, 47, 0.7);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        
+        .code-block {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: monospace;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--accent);
+        }
+        
+        .note-box {
+            background-color: rgba(100, 255, 218, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .note-box h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            color: var(--accent);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-top: 2rem;
+        }
+        
+        .back-btn:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(136, 146, 176, 0.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 5rem 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                display: none;
+                box-shadow: 0 10px 20px rgba(2, 12, 27, 0.8);
+            }
+        
+            .nav-links.active {
+                display: flex;
+            }
+        
+            .mobile-menu-btn {
+                display: block;
+            }
+        
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+            
+            .section-header h2::after {
+                width: 150px;
+                margin-left: 1.5rem;
+            }
+            
+            .config-step {
+                padding: 1.5rem;
+            }
+            
+            .hero {
+                min-height: 50vh;
+                padding-top: 90px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.8rem;
+                line-height: 1.3;
+                word-break: break-word;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .section-header h2 {
+                white-space: normal;
+                text-align: left;
+            }
+
+            .section-header h2::after {
+                width: 60px;
+                margin-left: 0.5rem;
+            }
+
+            .config-images {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .config-image img {
+                width: 100%;
+                height: auto;
+            }
+
+            .config-step {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo" aria-label="Home">
+            <i class="fas fa-shield-alt project-icon" aria-hidden="true"></i>
+            <span>VPN Server</span>
+        </a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero container fade-in delay-1">
+        <div class="hero-content">
+            <h1 class="hero-title">Konfigurasi VPN Server Berbasis Debian</h1>
+            <p class="hero-description delay-2">
+               Konfigurasi ini membahas implementasi server VPN berbasis Debian 12 menggunakan PPTPD. Server ini dilengkapi aturan firewall, manajemen akses VPN, serta sistem deteksi intrusi untuk memperkuat keamanan jaringan. Dengan konfigurasi tersebut, VPN dapat dimanfaatkan sebagai sarana komunikasi jaringan privat yang aman, menjaga kerahasiaan, integritas, dan ketersediaan data di dalam sistem.
+            </p>
+        </div>
+    </section>
+
+    <section id="config-steps" class="container">
+        <div class="section-header fade-in">
+            <h2>Langkah Konfigurasi</h2>
+        </div>
+        
+        <div class="config-step fade-in delay-1">
+            <div class="config-step-header">
+                <div class="step-number">1</div>
+                <h3>Persiapan Awal</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Sebelum memulai konfigurasi, pastikan perangkat berikut sudah dipersiapkan :</p>
+                <ul>
+                    <li>Server dengan sistem operasi linux debian</li>
+                    <li>Akses root atau user dengan privilege sudo</li>
+                </ul>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-nas/debianlogo.png">
+                        <div class="image-caption">Gambar 1.1: Linux Debian</div>
+                    </div>
+                    <div class="config-image">
+                        <img src="picture/server-vpn/pptp.webp">
+                        <div class="image-caption">Gambar 1.2: PPTP VPN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="config-step fade-in delay-2">
+            <div class="config-step-header">
+                <div class="step-number">2</div>
+                <h3>Login Server Debian</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah pertama adalah masuk ke server debian dengan akses root atau user privilege sudo :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/1.png">
+                        <div class="image-caption">Gambar 2.1: Login Server Debian</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-3">
+            <div class="config-step-header">
+                <div class="step-number">3</div>
+                <h3>Update & Upgrade Sistem</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah update & upgrade sistem agar repository menjadi paling update :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/2.png">
+                        <div class="image-caption">Gambar 3.1: Update Sistem</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    apt update && apt upgrade -y
+                </div>
+            </div>
+        </div>
+        
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">4</div>
+                <h3>Instal Paket PPTPD</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah instal paket pptpd :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/3.png">
+                        <div class="image-caption">Gambar 4.1: Instal Paket PPTPD</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    apt install pptpd -y
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">5</div>
+                <h3>Buka File pptpd.conf</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah membuka file konfigurasi pptpd.conf :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/4.png">
+                        <div class="image-caption">Gambar 5.1: Membuka File pptpd.conf</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    nano /etc/pptpd.conf
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">6</div>
+                <h3>Konfigurasi File pptpd.conf</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah konfigurasi file pptpd.conf, dimana pada bagian baris paling bawah ditambahkan localip dan remoteip :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/5.png">
+                        <div class="image-caption">Gambar 6.1: Konfigurasi pptpd.conf</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    <li>Tambahkan di baris paling bawah :</li>
+                    localip 193.193.34.1
+                    remoteip 193.193.34.2-5
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">7</div>
+                <h3>Buka File User PPTPD</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah membuka file user pptpd :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/6.png">
+                        <div class="image-caption">Gambar 7.1: Membuka File User PPTPD</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    nano /etc/ppp/chap-secrets
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">8</div>
+                <h3>Konfigurasi User PPTPD</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah konfigurasi user pptpd, dengan menambahkan user & password :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/7.png">
+                        <div class="image-caption">Gambar 8.1: Konfigurasi User PPTPD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">9</div>
+                <h3>Buka File DNS User</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah membuka file dns untuk user pptpd :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/8.png">
+                        <div class="image-caption">Gambar 9.1: Membuka File DNS User</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    nano /etc/ppp/pptpd-options
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">10</div>
+                <h3>Konfigurasi File DNS User</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah konfigurasi file dns user pptpd, dengan menambahkan dns di bagian baris bawah # Network and Routing :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/9.png">
+                        <div class="image-caption">Gambar 10.1: Konfigurasi File DNS User</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    <li>Tambahkan di baris bawah # Network and Routing :</li>
+                    ms-dns 193.193.34.1
+                    ms-dns 8.8.8.8
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">11</div>
+                <h3>Restart Service PPTPD</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah restart service pptpd :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/10.png">
+                        <div class="image-caption">Gambar 11.1: Restart Service PPTPD</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    /etc/init.d/pptpd restart
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">12</div>
+                <h3>Mengecek IP Server</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah selanjutnya adalah mengecek dan mencatat ip address server debian yang nanti digunakan untuk tahap pengujian :</p>
+                
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/11.png">
+                        <div class="image-caption">Gambar 12.1: Cek IP</div>
+                    </div>
+                </div>
+                
+                <p>Commands :</p>
+                
+                <div class="code-block">
+                    ip a
+                </div>
+            </div>
+        </div>
+
+        <div class="config-step fade-in delay-4">
+            <div class="config-step-header">
+                <div class="step-number">13</div>
+                <h3>Pengujian</h3>
+            </div>
+            <div class="project-report-content">
+                <p>Langkah terakhir adalah menguji vpn server menggunakan client yang terhubung satu segmen dengan ip address server :</p>
+                <div class="config-images">
+                    <div class="config-image">
+                        <img src="picture/server-vpn/12.jpeg">
+                        <div class="image-caption">Gambar 13.1: Buat Koneksi VPN</div>
+                    </div>
+                    <div class="config-image">
+                        <img src="picture/server-vpn/13.jpeg">
+                        <div class="image-caption">Gambar 13.2: Pengujian</div>
+                    </div>
+                </div>
+                
+                <div class="note-box">
+                    <h4><i class="fas fa-lightbulb"></i> Tips Penting</h4>
+                    <p>Pastikan sistem sudah ter-update dengan menjalankan <code>sudo apt update && sudo apt upgrade</code> sebelum memulai konfigurasi.</p>
+                </div>
+            </div>
+        </div>
+        
+        <a href="projects.html" class="back-btn fade-in delay-4">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back</span>
+        </a>
+    </section>
+
+    <footer class="fade-in delay-4">
+    <div class="container">
+        <p>© <span id="year"></span> Tobias Rejanuar. All rights reserved.</p>
+    </div>
+    </footer>
+
+    <script>
+        const startYear = 2025;
+        const currentYear = new Date().getFullYear();
+        document.getElementById('year').textContent =
+        currentYear > startYear ? `${startYear}–${currentYear}` : startYear;
+
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => {
+                el.style.opacity = 1;
+                el.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
