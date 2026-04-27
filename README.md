@@ -13,7 +13,6 @@ The website is structured to showcase expertise in:
 * **Network Infrastructure:** Configuration of MikroTik, VLAN management, OSPF, PPPoE.
 * **Operating Systems:** Advanced administration of Linux distributions, specifically Debian.
 * **Service Deployment:** Implementing secure remote access (Cloudflare Tunnels), and containerized environments (Docker).
-* **CCTV & NVR Systems:** Specialized network optimization for high-bandwidth surveillance traffic.
 
 ## Repository Structure
 * `/picture` - Assets and architecture diagrams.
