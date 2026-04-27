@@ -10,9 +10,9 @@ This repository houses the source code for my personal portfolio and technical d
 
 ## Project Focus
 The website is structured to showcase expertise in:
-* **Network Infrastructure:** Configuration of MikroTik hardware, VLAN management, and traffic prioritization.
-* **Operating Systems:** Advanced administration of Linux distributions, specifically Debian and Armbian.
-* **Service Deployment:** Implementing secure remote access (Cloudflare Tunnels), monitoring tools (LibreNMS), and containerized environments (Docker).
+* **Network Infrastructure:** Configuration of MikroTik, VLAN management, OSPF, PPPoE.
+* **Operating Systems:** Advanced administration of Linux distributions, specifically Debian.
+* **Service Deployment:** Implementing secure remote access (Cloudflare Tunnels), and containerized environments (Docker).
 * **CCTV & NVR Systems:** Specialized network optimization for high-bandwidth surveillance traffic.
 
 ## Repository Structure
