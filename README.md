@@ -5,7 +5,6 @@ This repository houses the source code for my personal portfolio and technical d
 ## Tech Stack
 - **Deployment:** GitHub.
 - **Engine:** -
-- **DNS & Security:** Cloudflare.
 - **Core Topics:** Networking & Linux Systems.
 
 ## Project Focus
