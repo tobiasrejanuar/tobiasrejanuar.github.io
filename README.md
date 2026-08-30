@@ -9,9 +9,8 @@ This repository houses the source code for my personal portfolio and technical d
 
 ## Project Focus
 The website is structured to showcase expertise in:
-* **Network Infrastructure:** Configuration of MikroTik, VLAN management, OSPF, PPPoE.
+* **Network Infrastructure:** Configuration of MikroTik, VLAN, OSPF, PPPoE, Queue, HotSpot.
 * **Operating Systems:** Advanced administration of Linux distributions, specifically Debian.
-* **Service Deployment:** Implementing secure remote access (Cloudflare Tunnels), and containerized environments (Docker).
 
 ## Repository Structure
 * `/picture` - Assets and architecture diagrams.
