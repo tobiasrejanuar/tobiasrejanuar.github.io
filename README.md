@@ -4,12 +4,11 @@ This repository houses the source code for my personal portfolio and technical d
 
 ## Tech Stack
 - **Deployment:** GitHub.
-- **Engine:** -
 - **Core Topics:** Networking & Linux Systems.
 
 ## Project Focus
 The website is structured to showcase expertise in:
-* **Network Infrastructure:** Configuration of MikroTik, VLAN, OSPF, PPPoE, Queue, HotSpot.
+* **Network Infrastructure:** Configuration of MikroTik, VyOS, Cisco, ZTE
 * **Operating Systems:** Advanced administration of Linux distributions, specifically Debian.
 
 ## Repository Structure
